@@ -66,7 +66,7 @@
         font - size: 15px; font-weight: 600; color: #666; margin-bottom: 2px;
 }
     .my-stripe-popup-root .plan-card-price {
-        font - size: 20px; font-weight: bold; color: #000; margin: 8px 0;
+        font - size: 20px; font-weight: bold; color: #000; margin-top: 3px ;margin-bottom: 12px ;
 }
     .my-stripe-popup-root .plan-card-oldprice {
         color: #999; text-decoration: line-through; font-size: 15px; font-weight: normal; margin-left: 6px;
@@ -75,11 +75,11 @@
         font - size: 13px; color: #666; margin-left: 2px;
 }
     .my-stripe-popup-root .plan-card ul {
-        list - style: none; padding: 0; font-size: 14px; color: #444; margin: 0 0 10px 0;
+        list-style: none; padding: 0; font-size: 14px; color: #444; margin: 0 0 10px 0;
 }
 
   .my-stripe-popup-root .plan-card li {
-        list - style: none; 
+        list-style: none;
 }
     .my-stripe-popup-root .plan-btn {
         padding: 10px 0;
