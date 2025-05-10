@@ -4,17 +4,23 @@ const connectDB = require('./config/db');
 const checkoutRoutes = require('./routes/checkout');
 const productRoutes = require('./routes/products');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
+
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 connectDB();
 
 // CORS configuration
 const allowedOrigins = [
+ 
     'http://localhost:3000',
     'https://6ee6-2402-e280-4117-321-ad03-e06a-5c80-6b41.ngrok-free.app',
     'https://stripe-payment.algofolks.com',
     'https://totalbizpack.com',
+    'http://192.168.1.7:3000',
     process.env.FRONTEND_URL
 ].filter(Boolean); 
 
@@ -50,6 +56,7 @@ app.use((err, req, res, next) => {
     console.error('Server Error:', err);
     res.status(500).json({ error: 'Internal server error' });
 });
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
