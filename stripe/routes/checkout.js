@@ -50,8 +50,6 @@ router.post('/create-checkout-session', async (req, res) => {
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'subscription',
-            success_url: `${domainURL}/success.html`,
-            cancel_url: `${domainURL}/cancel.html`,
             metadata: {
                 productId,
                 productName,
