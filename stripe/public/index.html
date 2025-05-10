@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <button onclick="openPopup('index10')" 
+        <button onclick="openPopup('index3')" 
             style="width: 100%; padding: 16px; font-size: 16px; border-radius: 8px; background: #3B0764; color: white; border: none; cursor: pointer; font-weight: 500; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.5px;"
             onmouseover="this.style.background='#2d0549'" 
             onmouseout="this.style.background='#3B0764'">
@@ -96,7 +96,7 @@
 
         <!-- Plan Summary -->
         <div id="selectedPlanSummary" style="background:#f9f9f9;border:1px solid #eee;border-radius:12px;padding:12px;margin-bottom:10px;">
-            <div style="font-size:13px;color:#666;font-weight:500;">AI Content Creation Service</div>
+            <div id="kitName" style="font-size:13px;color:#666;font-weight:500;"></div>
             <div><span id="planPrice" style="font-size:18px;font-weight:700;color:#000;"></span></div>
         </div>
 
@@ -185,10 +185,13 @@
                 sessionStorage.setItem('selectedProduct', JSON.stringify(product));
                 
                 const planPriceElement = document.getElementById('planPrice');
+                const planKitName = document.getElementById('kitName')
                 if (planPriceElement) {
                     planPriceElement.textContent = product.price;
                 }
-                
+                if (planKitName) {
+                    planKitName.textContent = product.meta.kitName;
+                }
                 const popupOverlay = document.getElementById('popupOverlay');
                 if (popupOverlay) {
                     popupOverlay.style.display = 'flex';

@@ -5,14 +5,38 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     try {
         const products = {
-            'index10': {
-                productId: 'index10',
+            'index1': {
+                productId: 'index1',
                 priceId: 'price_1RMNi9FRtxUdrNGCtI6KOqao',
-                name: 'Premium Plan',
+                name: 'AI Content Creation Service',
                 price: '$299.00/month',
-                meta: {}
+                meta: {
+                    kitName: 'AI Content Creation Service',
+                   
+                }
+            },
+            'index2': {
+                productId: 'index2',
+                priceId: 'price_1RMNi9FRtxUdrNGCtI6KOqao',
+                name: 'Virtual Event Production Service',
+                price: '$299.00/month',
+                meta: {
+                    kitName: 'Virtual Event Production Service',
+                   
+                }
+            },
+            'index3': {
+                productId: 'index3',
+                priceId: 'price_1RMNi9FRtxUdrNGCtI6KOqao',
+                name: 'Ghostwritten Tweetstorm Service',
+                price: '$299.00/month',
+                meta: {
+                    kitName: 'Ghostwritten Tweetstorm Service',
+                 
+                }
             }
         };
+
         
         res.json(products);
     } catch (error) {
