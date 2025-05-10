@@ -48,7 +48,8 @@
     <script src="https://js.stripe.com/v3/"></script>
     <script>
         // Load API URL from environment variable
-        const API_URL = window.API_URL || 'https://stripe-payment.algofolks.com/api';
+         const API_URL = window.API_URL || 'https://stripe-payment.algofolks.com/api';
+        // const API_URL = window.API_URL || 'http://localhost:3000/api';
         const stripe = Stripe('pk_test_51RAUufFRtxUdrNGCljb5TkX16xKPX6EiJRSHPHENAfBx6AVvaE83LOBKC41ltr1HLECLiKuuTYdWauBuOyBTRsrF009tGlRQ9C');
 
         let selectedPlanId = null;
@@ -80,69 +81,66 @@
 <div id="popupOverlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;justify-content:center;align-items:center;">
     <div style="background:#fff;padding:20px;border-radius:12px;width:90%;max-width:600px;height:80vh;overflow:hidden;position:relative;box-shadow:0 10px 30px rgba(0,0,0,0.2);display:flex;flex-direction:column;justify-content:space-between;">
 
-      
-
         <!-- Header -->
-<div style="margin-bottom: 10px;">
-  <div style="display: flex; justify-content: space-between; align-items: center;">
-    <div>
-      <h3 style="font-size: 20px; margin-bottom: 4px;">Pricing Information</h3>
-      <h6 style="font-size: 13px; color: #666; margin: 0;">Choose a support plan that suits your needs.</h6>
-    </div>
-    <span onclick="closePopup()" style="font-size: 22px; cursor: pointer; color: #999;">&times;</span>
-  </div>
-</div>
-
+        <div style="margin-bottom: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3 style="font-size: 24px; margin-bottom: 4px;">Checkout Details</h3>
+                </div>
+                <span onclick="closePopup()" style="font-size: 22px; cursor: pointer; color: #999;">&times;</span>
+            </div>
+        </div>
 
         <!-- Plan Summary -->
-        <div id="selectedPlanSummary" style="background:#f9f9f9;border:1px solid #eee;border-radius:12px;padding:12px;margin-bottom:10px;">
+        <div id="selectedPlanSummary" style="background:#f9f9f9;border:1px solid #eee;border-radius:12px;padding:12px;margin-bottom:0px;">
             <div id="kitName" style="font-size:13px;color:#666;font-weight:500;"></div>
-            <div><span id="planPrice" style="font-size:18px;font-weight:700;color:#000;"></span></div>
+            <div><span id="planPrice" style="font-size:20px;font-weight:700;color:#000;"></span></div>
         </div>
 
         <!-- Support Plan Title -->
-        <div style="margin-bottom:8px;">
-            <h3 style="font-size:16px;margin-bottom:4px;">Support Plan</h3>
-            <h6 style="font-size:13px;color:#666;margin:0;">Choose a plan that suits your needs.</h6>
-        </div>
-
-        <!-- Plan Cards -->
-      <div style="display:flex;gap:10px;flex:1;">
-    <!-- Plan 1 -->
-    <div style="flex:1;background:#fff;border-radius:10px;border:1px solid #eee;padding:14px;display:flex;flex-direction:column;justify-content:space-between;">
-        <div>
-            <div style="font-size:14px;font-weight:600;color:#666;">ELITE</div>
-            <div style="font-size:18px;margin:8px 0;color:#000;"><b>$199</b> <span style="color:#999;text-decoration:line-through;">$99</span> <span style="font-size:13px;color:#666;">/mo</span></div>
-
-            <ul style="list-style:none;padding:0;font-size:14px;color:#444;margin:0;">
-                <li>✓ text feature 1</li>
-                <li>✓ text feature 2</li>
-                <li>✓ text feature 3</li>
-            </ul>
-        </div>
-        <button style="margin-top:10px;padding:10px;background:#8044FF;color:white;border:none;border-radius:6px;font-size:14px;cursor:pointer;" onclick="proceedToCheckout('price_1RMRlVFRtxUdrNGC0raPhXjS')">
-            Continue with Elite
-        </button>
-    </div>
-
-    <!-- Plan 2 -->
-    <div style="flex:1;background:#fff;border-radius:10px;border:1px solid #eee;padding:14px;display:flex;flex-direction:column;justify-content:space-between;">
-        <div>
-            <div style="font-size:14px;font-weight:600;color:#666;">PREMIUM</div>
-            <div style="font-size:18px;margin:8px 0;color:#000;"><b>$99</b> <span style="color:#999;text-decoration:line-through;">$199</span> <span style="font-size:13px;color:#666;">/mo</span></div>
-
-            <ul style="list-style:none;padding:0;font-size:14px;color:#444;margin:0;">
-                <li>✓ text feature 1</li>
-                <li>✓ text feature 2</li>
-                <li>✓ text feature 3</li>
-            </ul>
-        </div>
-        <button style="margin-top:10px;padding:10px;background:#3B0764;color:white;border:none;border-radius:6px;font-size:14px;cursor:pointer;" onclick="proceedToCheckout('price_1RMRqWFRtxUdrNGCUYfXbac8')">
-            Continue with Premium
-        </button>
-    </div>
+<div style="padding:15px 0;">
+    <h3 style="font-size:18px;color:#666;margin:0;">Choose a support plan to get our support.</h3>
 </div>
 
+
+        <!-- Plan Cards (Premium first, then Elite) -->
+        <div style="display:flex;gap:10px;flex:1;">
+            <!-- Premium Plan -->
+            <div style="flex:1;background:#fff;border-radius:10px;border:1px solid #eee;padding:14px;display:flex;flex-direction:column;justify-content:space-between;">
+                <div>
+                    <div style="font-size:15px;font-weight:600;color:#666;">PREMIUM</div>
+                    <div style="font-size:20px;margin:8px 0;color:#000;"><b>$99</b> <span style="color:#999;text-decoration:line-through;">$199</span> <span style="font-size:13px;color:#666;">/mo</span></div>
+
+                    <ul style="list-style:none;padding:0;font-size:14px;color:#444;margin:0;">
+                        <li>✓ Dedicated Account Manager</li>
+                        <li>✓ Priority Support (24-48 hr turnaround)</li>
+                        <li>✓ Standard SLA (Service Level Agreement)</li>
+                        <li>✓ Access to Premium Templates/Assets</li>
+                    </ul>
+                </div>
+                <button style="margin-top:10px;padding:10px;background:#3B0764;color:white;border:none;border-radius:6px;font-size:14px;cursor:pointer;" onclick="proceedToCheckout('price_1RMRqWFRtxUdrNGCUYfXbac8')">
+                    CONTINUE WITH PREMIUM
+                </button>
+            </div>
+
+            <!-- Elite Plan -->
+            <div style="flex:1;background:#fff;border-radius:10px;border:1px solid #eee;padding:14px;display:flex;flex-direction:column;justify-content:space-between;">
+                <div>
+                    <div style="font-size:15px;font-weight:600;color:#666;">ELITE</div>
+                    <div style="font-size:20px;margin:8px 0;color:#000;"><b>$199</b> <span style="color:#999;text-decoration:line-through;">$99</span> <span style="font-size:13px;color:#666;">/mo</span></div>
+
+                    <ul style="list-style:none;padding:0;font-size:14px;color:#444;margin:0;">
+                        <li>✓ Everything in Premium</li>
+                        <li>✓ Personalized Project Manager</li>
+                        <li>✓ AI-Powered Insights/Recommendations</li>
+                        <li>✓ Dedicated Slack/Phone Support</li>
+                    </ul>
+                </div>
+                <button style="margin-top:10px;padding:10px;background:#8044FF;color:white;border:none;border-radius:6px;font-size:14px;cursor:pointer;" onclick="proceedToCheckout('price_1RMRlVFRtxUdrNGC0raPhXjS')">
+                    CONTINUE WITH ELITE
+                </button>
+            </div>
+        </div>
 
         <!-- OR Divider -->
         <div style="display:flex;align-items:center;text-align:center;margin:10px 0;">
@@ -152,16 +150,17 @@
         </div>
 
         <!-- Without Support Button -->
-       <button
-    onmouseover="this.style.background='black'; this.style.color='white';"
-    onmouseout="this.style.background='transparent'; this.style.color='black';"
-    onclick="proceedToCheckout()"
-    style="padding:10px;background:transparent;color:black;border:1.5px solid black;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;text-transform:uppercase;">
-    Continue without support
-</button>
+        <button
+            onmouseover="this.style.background='black'; this.style.color='white';"
+            onmouseout="this.style.background='transparent'; this.style.color='black';"
+            onclick="proceedToCheckout()"
+            style="padding:10px;background:transparent;color:black;border:1.5px solid black;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;text-transform:uppercase;">
+            Continue without support
+        </button>
 
     </div>
-</div>`;
+</div>
+`;
 
             document.body.insertAdjacentHTML('beforeend', popupHTML);
             popupInjected = true;
