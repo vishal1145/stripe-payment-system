@@ -17,10 +17,8 @@ connectDB();
 const allowedOrigins = [
  
     'http://localhost:3000',
-    'https://6ee6-2402-e280-4117-321-ad03-e06a-5c80-6b41.ngrok-free.app',
     'https://stripe-payment.algofolks.com',
     'https://totalbizpack.com',
-    'http://192.168.1.7:3000',
     process.env.FRONTEND_URL
 ].filter(Boolean); 
 
