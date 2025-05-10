@@ -44,7 +44,7 @@ router.post('/create-checkout-session', async (req, res) => {
         console.log('Final line items:', lineItems);
 
         // Create Stripe session with enhanced metadata
-        const domainURL = process.env.DOMAIN || 'http://localhost:3000';
+        const domainURL = process.env.DOMAIN || 'https://stripe-payment.algofolks.com/';
         const session = await stripe.checkout.sessions.create({
             customer_email: email,
             payment_method_types: ['card'],
