@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
                 productId: 'index2',
                 priceId: 'price_1RMNi9FRtxUdrNGCtI6KOqao',
                 name: 'Virtual Event Production Service',
-                price: '$299.00/month',
+                price: '$199.00/month',
                 meta: {
                     kitName: 'Virtual Event Production Service',
                    
@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
                 productId: 'index3',
                 priceId: 'price_1RMNi9FRtxUdrNGCtI6KOqao',
                 name: 'Ghostwritten Tweetstorm Service',
-                price: '$299.00/month',
+                price: '$199.00/month',
                 meta: {
                     kitName: 'Ghostwritten Tweetstorm Service',
                  
