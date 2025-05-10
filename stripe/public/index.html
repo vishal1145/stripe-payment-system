@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subscription</title>
+</head>
+
+<body>
+    <div id="mainCard"
+        style="max-width: 400px; background: white; border-radius: 16px; padding: 30px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); font-family: Arial, sans-serif; margin: 40px auto; border: 1px solid #eee;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+            <div style="display: flex; align-items: baseline;">
+                <span style="font-size: 32px; font-weight: bold;">$299</span>
+                <span style="font-size: 16px; color: #666; margin-left: 4px;">/mo</span>
+            </div>
+            <div style="background: #3B0764; color: white; padding: 8px 20px; border-radius: 20px; font-weight: 500;">
+                PREMIUM
+            </div>
+        </div>
+
+        <p style="margin: 0 0 20px; color: #333;">Enjoy limitless use with interactive export options</p>
+
+        <div style="margin-bottom: 25px;">
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                <span style="color: #FF4B8B; margin-right: 10px;">✓</span>
+                <span>Unlimited Access</span>
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                <span style="color: #FF4B8B; margin-right: 10px;">✓</span>
+                <span>Priority Support</span>
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                <span style="color: #FF4B8B; margin-right: 10px;">✓</span>
+                <span>Advanced Features</span>
+            </div>
+        </div>
+
+        <button onclick="openPopup('index10')" 
+            style="width: 100%; padding: 16px; font-size: 16px; border-radius: 8px; background: #3B0764; color: white; border: none; cursor: pointer; font-weight: 500; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.5px;"
+            onmouseover="this.style.background='#2d0549'" 
+            onmouseout="this.style.background='#3B0764'">
+            Buy Now
+        </button>
+    </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        // Load API URL from environment variable
+        const API_URL = window.API_URL || 'http://localhost:3000/api';
+        const stripe = Stripe('pk_test_51RAUufFRtxUdrNGCljb5TkX16xKPX6EiJRSHPHENAfBx6AVvaE83LOBKC41ltr1HLECLiKuuTYdWauBuOyBTRsrF009tGlRQ9C');
+
+        let selectedPlanId = null;
+        let popupInjected = false;
+        let productMapping = {};
+        
+        // Fetch product mapping data
+        async function fetchProductMapping() {
+            try {
+                const response = await fetch(`${API_URL}/products`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                productMapping = await response.json();
+                console.log('Product mapping loaded:', productMapping);
+            } catch (error) {
+                console.error('Error fetching product mapping:', error);
+                alert('Error loading product data. Please try again.');
+            }
+        }
+
+        // Load product data when page loads
+        document.addEventListener('DOMContentLoaded', fetchProductMapping);
+
+        function injectPopupHTML() {
+            if (popupInjected) return;
+            
+            const popupHTML = `
+<div id="popupOverlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;justify-content:center;align-items:center;">
+    <div style="background:#fff;padding:20px;border-radius:12px;width:90%;max-width:600px;height:80vh;overflow:hidden;position:relative;box-shadow:0 10px 30px rgba(0,0,0,0.2);display:flex;flex-direction:column;justify-content:space-between;">
+
+      
+
+        <!-- Header -->
+<div style="margin-bottom: 10px;">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div>
+      <h3 style="font-size: 20px; margin-bottom: 4px;">Pricing Information</h3>
+      <h6 style="font-size: 13px; color: #666; margin: 0;">Choose a support plan that suits your needs.</h6>
+    </div>
+    <span onclick="closePopup()" style="font-size: 22px; cursor: pointer; color: #999;">&times;</span>
+  </div>
+</div>
+
+
+        <!-- Plan Summary -->
+        <div id="selectedPlanSummary" style="background:#f9f9f9;border:1px solid #eee;border-radius:12px;padding:12px;margin-bottom:10px;">
+            <div style="font-size:13px;color:#666;font-weight:500;">AI Content Creation Service</div>
+            <div><span id="planPrice" style="font-size:18px;font-weight:700;color:#000;"></span></div>
+        </div>
+
+        <!-- Support Plan Title -->
+        <div style="margin-bottom:8px;">
+            <h3 style="font-size:16px;margin-bottom:4px;">Support Plan</h3>
+            <h6 style="font-size:13px;color:#666;margin:0;">Choose a plan that suits your needs.</h6>
+        </div>
+
+        <!-- Plan Cards -->
+      <div style="display:flex;gap:10px;flex:1;">
+    <!-- Plan 1 -->
+    <div style="flex:1;background:#fff;border-radius:10px;border:1px solid #eee;padding:14px;display:flex;flex-direction:column;justify-content:space-between;">
+        <div>
+            <div style="font-size:14px;font-weight:600;color:#666;">ELITE</div>
+            <div style="font-size:18px;margin:8px 0;color:#000;"><b>$199</b> <span style="color:#999;text-decoration:line-through;">$99</span> <span style="font-size:13px;color:#666;">/mo</span></div>
+
+            <ul style="list-style:none;padding:0;font-size:14px;color:#444;margin:0;">
+                <li>✓ text feature 1</li>
+                <li>✓ text feature 2</li>
+                <li>✓ text feature 3</li>
+            </ul>
+        </div>
+        <button style="margin-top:10px;padding:10px;background:#8044FF;color:white;border:none;border-radius:6px;font-size:14px;cursor:pointer;" onclick="proceedToCheckout('price_1RMRlVFRtxUdrNGC0raPhXjS')">
+            Continue with Elite
+        </button>
+    </div>
+
+    <!-- Plan 2 -->
+    <div style="flex:1;background:#fff;border-radius:10px;border:1px solid #eee;padding:14px;display:flex;flex-direction:column;justify-content:space-between;">
+        <div>
+            <div style="font-size:14px;font-weight:600;color:#666;">PREMIUM</div>
+            <div style="font-size:18px;margin:8px 0;color:#000;"><b>$99</b> <span style="color:#999;text-decoration:line-through;">$199</span> <span style="font-size:13px;color:#666;">/mo</span></div>
+
+            <ul style="list-style:none;padding:0;font-size:14px;color:#444;margin:0;">
+                <li>✓ text feature 1</li>
+                <li>✓ text feature 2</li>
+                <li>✓ text feature 3</li>
+            </ul>
+        </div>
+        <button style="margin-top:10px;padding:10px;background:#3B0764;color:white;border:none;border-radius:6px;font-size:14px;cursor:pointer;" onclick="proceedToCheckout('price_1RMRqWFRtxUdrNGCUYfXbac8')">
+            Continue with Premium
+        </button>
+    </div>
+</div>
+
+
+        <!-- OR Divider -->
+        <div style="display:flex;align-items:center;text-align:center;margin:10px 0;">
+            <hr style="flex:1;border:none;border-top:1px solid #ccc;" />
+            <span style="padding:0 6px;font-size:12px;color:#666;">OR</span>
+            <hr style="flex:1;border:none;border-top:1px solid #ccc;" />
+        </div>
+
+        <!-- Without Support Button -->
+       <button
+    onmouseover="this.style.background='black'; this.style.color='white';"
+    onmouseout="this.style.background='transparent'; this.style.color='black';"
+    onclick="proceedToCheckout()"
+    style="padding:10px;background:transparent;color:black;border:1.5px solid black;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;text-transform:uppercase;">
+    Continue without support
+</button>
+
+    </div>
+</div>`;
+
+            document.body.insertAdjacentHTML('beforeend', popupHTML);
+            popupInjected = true;
+        }
+
+        async function openPopup(productId) {
+            try {
+                // Ensure product mapping is loaded
+                if (Object.keys(productMapping).length === 0) {
+                    await fetchProductMapping();
+                }
+                
+                injectPopupHTML();
+                
+                const product = productMapping[productId];
+                if (!product) {
+                    console.error('Product not found:', productId);
+                    return;
+                }
+                
+                sessionStorage.setItem('selectedProduct', JSON.stringify(product));
+                
+                const planPriceElement = document.getElementById('planPrice');
+                if (planPriceElement) {
+                    planPriceElement.textContent = product.price;
+                }
+                
+                const popupOverlay = document.getElementById('popupOverlay');
+                if (popupOverlay) {
+                    popupOverlay.style.display = 'flex';
+                }
+            } catch (error) {
+                console.error('Error opening popup:', error);
+            }
+        }
+
+        function closePopup() {
+            try {
+                const popupOverlay = document.getElementById('popupOverlay');
+                if (popupOverlay) {
+                    popupOverlay.style.display = 'none';
+                }
+                selectedPlanId = null;
+            } catch (error) {
+                console.error('Error closing popup:', error);
+            }
+        }
+
+        function proceedToCheckout(priceId) {
+            try {
+                const additionalPlans = priceId ? [priceId] : [];
+                createCheckoutSession(additionalPlans);
+            } catch (error) {
+                console.error('Error proceeding to checkout:', error);
+                alert('Error proceeding to checkout. Please try again.');
+            }
+        }
+
+        function createCheckoutSession(additionalPlans) {
+            try {
+                const selectedProduct = JSON.parse(sessionStorage.getItem('selectedProduct'));
+                if (!selectedProduct) {
+                    console.error('No product selected');
+                    return;
+                }
+
+                fetch(`${API_URL}/checkout/create-checkout-session`, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        priceId: selectedProduct.priceId,
+                        productId: selectedProduct.productId,
+                        productName: selectedProduct.name,
+                        productPrice: selectedProduct.price,
+                        additionalPlans: additionalPlans,
+                        metadata: selectedProduct.meta
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(session => {
+                    if (session.error) {
+                        console.error('Error:', session.error);
+                        alert(session.error);
+                        return;
+                    }
+                    window.location.href = session.url;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Something went wrong with the checkout. Please try again.');
+                });
+            } catch (error) {
+                console.error('Error creating checkout session:', error);
+                alert('Error creating checkout session. Please try again.');
+            }
+        }
+    </script>
+</body>
+
+</html>
