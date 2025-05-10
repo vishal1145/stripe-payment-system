@@ -108,8 +108,8 @@
     .my-stripe-popup-root .continue-btn {
         padding: 10px 0;
     background: #fff;
-    color: #000;
-    border: 1.5px solid #000;
+    color: #666;
+    border: 1.5px solid #666;
     border-radius: 20px;
     font-size: 12px;
     font-weight: 600;
