@@ -77,6 +77,10 @@
     .my-stripe-popup-root .plan-card ul {
         list - style: none; padding: 0; font-size: 14px; color: #444; margin: 0 0 10px 0;
 }
+
+  .my-stripe-popup-root .plan-card li {
+        list - style: none; 
+}
     .my-stripe-popup-root .plan-btn {
         padding: 10px 0;
     background: #3B0764;

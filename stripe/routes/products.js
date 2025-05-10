@@ -7,9 +7,9 @@ router.get('/', async (req, res) => {
         const products = {
             'index1': {
                 productId: 'index1',
-                priceId: 'price_1RMNi9FRtxUdrNGCtI6KOqao',
+                priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'AI Content Creation Service',
-                price: '$299.00/month',
+                price: '$199.00/month',
                 meta: {
                     kitName: 'AI Content Creation Service',
                    
