@@ -1,8 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const nodemailer = require('nodemailer');
 
 const Subscription = require('../models/Subscription');
+
+// Configure nodemailer
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD
+    }
+});
 
 // Create checkout session
 router.post('/create-checkout-session', async (req, res) => {
@@ -107,16 +117,110 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
                 // Get subscription and customer details
                 const subscription = await stripe.subscriptions.retrieve(session.subscription);
                 const customer = await stripe.customers.retrieve(session.customer);
+                
+                // Get the latest invoice for receipt URL
+                const invoice = await stripe.invoices.retrieve(subscription.latest_invoice);
+                const receiptUrl = invoice.hosted_invoice_url || invoice.invoice_pdf;
 
                 // Get kit name from custom fields
                 const kitName = session.custom_fields.find(field => field.key === 'kit_name')?.text?.value || customer.email;
 
-                console.log('Retrieved subscription details:', {
-                    subscriptionId: subscription.id,
-                    status: subscription.status,
-                    items: subscription.items.data.length,
-                    kitName: kitName
-                });
+                // Send confirmation email
+                const mailOptions = {
+                    from: process.env.EMAIL_USER,
+                    to: customer.email,
+                    subject: `Payment Confirmation - ${session.metadata.productName}`,
+                    html: `
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f6f8fb; padding: 40px 0;">
+  <div style="background: #fff; border-radius: 12px; box-shadow: 0 2px 8px #e0e0e0; padding: 32px 32px 24px 32px; margin: 0 auto;">
+    <div style="text-align: center;">
+      <img src="https://yourcompany.com/logo.png" alt="Company Logo" style="height: 40px; margin-bottom: 16px;">
+      <h2 style="color: #27ae60; margin: 0 0 8px 0;">Thank You for Your Purchase!</h2>
+      <p style="color: #888; margin: 0 0 24px 0;">Your order has been confirmed</p>
+    </div>
+    <table style="width: 100%; margin-bottom: 24px;">
+      <tr>
+        <td style="color: #888;">Order ID</td>
+        <td style="text-align: right; color: #333;">${session.id}</td>
+      </tr>
+      <tr>
+        <td style="color: #888;">Purchase Date</td>
+        <td style="text-align: right; color: #333;">${new Date(session.created * 1000).toLocaleDateString()}</td>
+      </tr>
+    </table>
+    <div style="border-top: 1px solid #eee; margin: 24px 0;"></div>
+    <h3 style="color: #34495e; font-size: 18px; margin-bottom: 12px;">Order Summary</h3>
+    <table style="width: 100%; font-size: 15px; margin-bottom: 16px;">
+      <tr>
+        <td>
+          <strong>${session.metadata.productName}</strong><br>
+          <span style="color: #888;">${kitName}</span>
+        </td>
+        <td style="text-align: right;">$${(subscription.items.data[0].price.unit_amount / 100).toFixed(2)}</td>
+      </tr>
+      ${subscription.items.data.length > 1 ? `
+      <tr>
+        <td>
+          <span style="color: #888;">Additional Plan</span>
+        </td>
+        <td style="text-align: right;">$${(subscription.items.data[1].price.unit_amount / 100).toFixed(2)}/month</td>
+      </tr>
+      ` : ''}
+      <tr>
+        <td style="color: #888;">Subtotal</td>
+        <td style="text-align: right;">$${(subscription.items.data.reduce((sum, item) => sum + item.price.unit_amount, 0) / 100).toFixed(2)}</td>
+      </tr>
+      <tr>
+        <td style="color: #888;">Tax</td>
+        <td style="text-align: right;">$0.00</td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold;">Total</td>
+        <td style="text-align: right; font-weight: bold;">$${(subscription.items.data.reduce((sum, item) => sum + item.price.unit_amount, 0) / 100).toFixed(2)}</td>
+      </tr>
+    </table>
+    <div style="border-top: 1px solid #eee; margin: 24px 0;"></div>
+    <h3 style="color: #34495e; font-size: 18px; margin-bottom: 12px;">Subscription Details</h3>
+    <table style="width: 100%; font-size: 15px;">
+      <tr>
+        <td>Status</td>
+        <td style="text-align: right; color: #27ae60;">${subscription.status.charAt(0).toUpperCase() + subscription.status.slice(1)}</td>
+      </tr>
+      <tr>
+        <td>Next Billing Date</td>
+        <td style="text-align: right;">${new Date(subscription.current_period_end * 1000).toLocaleDateString()}</td>
+      </tr>
+      <tr>
+        <td>Plan</td>
+        <td style="text-align: right;">${session.metadata.productName}</td>
+      </tr>
+      <tr>
+        <td>Billing Frequency</td>
+        <td style="text-align: right;">Monthly</td>
+      </tr>
+    </table>
+    <div style="text-align: center; margin: 32px 0 0 0;">
+      <a href="${receiptUrl}" style="background: #1976d2; color: #fff; padding: 12px 28px; border-radius: 6px; text-decoration: none; font-weight: bold; margin-right: 12px;">Download Kit</a>
+      
+    </div>
+    <div style="margin-top: 32px; color: #888; font-size: 13px; text-align: center;">
+      If you have any questions, please contact our support team at <a href="mailto:support@yourcompany.com" style="color: #1976d2;">support@yourcompany.com</a>.<br>
+      <div style="margin-top: 16px;">
+        &copy; ${new Date().getFullYear()} Your Company. All rights reserved.<br>
+        <a href="https://yourcompany.com/privacy" style="color: #888;">Privacy Policy</a> &nbsp;|&nbsp; <a href="https://yourcompany.com/terms" style="color: #888;">Terms</a>
+      </div>
+    </div>
+  </div>
+</div>
+`
+                };
+
+                try {
+                    await transporter.sendMail(mailOptions);
+                    console.log('Payment confirmation email sent successfully to:', customer.email);
+                } catch (emailError) {
+                    console.error('Error sending confirmation email:', emailError);
+                }
 
                 // Create subscription record
                 const subscriptionData = {
