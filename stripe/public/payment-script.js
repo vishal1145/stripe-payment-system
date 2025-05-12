@@ -1,7 +1,6 @@
 // Load API URL from environment variable
-    const API_URL = window.API_URL || 'https://stripe-payment.algofolks.com/api';
-    // const API_URL = window.API_URL || 'http://192.168.1.7:3000/api';
-    // const API_URL = window.API_URL || 'http://localhost:3000/api';
+    // const API_URL = window.API_URL || 'https://stripe-payment.algofolks.com/api';
+    const API_URL = window.API_URL || 'http://localhost:3000/api';
     const stripe = Stripe('pk_test_51RAUufFRtxUdrNGCljb5TkX16xKPX6EiJRSHPHENAfBx6AVvaE83LOBKC41ltr1HLECLiKuuTYdWauBuOyBTRsrF009tGlRQ9C');
 
     let selectedPlanId = null;
@@ -207,7 +206,7 @@ function injectPopupHTML() {
         <div class="plan-card">
             <div>
                 <div class="plan-card-title">PREMIUM</div>
-                <div style="color: #28a745; font-size:10px; font-weight: bold; margin-left: 139px ;">Limited time offer – 50% discount</div>
+                <div style="color: #28a745; font-size:16px; font-weight: bold; margin-left: 139px ;">Limited time offer – 50% discount</div>
                 <div style="display: flex; align-items: flex-start; gap: 30px;">
                     <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
                         <span style="font-size: 22px; margin-right: 4px;">✕</span>
@@ -243,7 +242,7 @@ function injectPopupHTML() {
         <div class="plan-card">
             <div>
                 <div class="plan-card-title">ELITE</div>
-                <div style="color: #28a745; font-size:10px; font-weight: bold; margin-left: 149px ;">Limited time offer – 50% discount</div>
+                <div style="color: #28a745; font-size:16px; font-weight: bold; margin-left: 149px ;">Limited time offer – 50% discount</div>
                 <div style="display: flex; align-items: flex-start; gap: 30px;">
                     <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
                         <span style="font-size: 22px; margin-right: 4px;">✕</span>
@@ -278,7 +277,7 @@ function injectPopupHTML() {
         <div class="plan-card">
             <div>
                 <div class="plan-card-title">PREMIUM</div>
-                <div style="color: #28a745; font-size:10px; font-weight: bold; margin-left: 139px ;">Limited time offer – 50% discount</div>
+                <div style="color: #28a745; font-size:16px; font-weight: bold; margin-left: 139px ;">Limited time offer – 50% discount</div>
                 <div style="display: flex; align-items: flex-start; gap: 30px;">
                     <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
                         <span style="font-size: 22px; margin-right: 4px;">✕</span>
@@ -311,7 +310,7 @@ function injectPopupHTML() {
         <div class="plan-card">
             <div>
                 <div class="plan-card-title">ELITE</div>
-                <div style="color: #28a745; font-size:10px; font-weight: bold; margin-left: 149px ;">Limited time offer – 50% discount</div>
+                <div style="color: #28a745; font-size:16px; font-weight: bold; margin-left: 149px ;">Limited time offer – 50% discount</div>
                 <div style="display: flex; align-items: flex-start; gap: 30px;">
                     <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
                         <span style="font-size: 22px; margin-right: 4px;">✕</span>
@@ -351,7 +350,7 @@ function injectPopupHTML() {
                     </div>
                     <div class="plan-summary" id="selectedPlanSummary">
                         <div id="kitName" style="font-size:13px;color:#666;font-weight:500;"></div>
-                        <div><span id="planPrice" style="font-size:20px;font-weight:700;color:#000;"></span></div>
+                        <div><span id="planPrice" style="font-size:20px;font-weight:700;color:#000;"> </span>  <span style="font-size:20px;font-weight:700; color:#888;"> / one time payment</span></div>
                     </div>
                     <div>
                         <h3 style="font-size:16px; margin:0;">
@@ -365,7 +364,7 @@ function injectPopupHTML() {
                     <div class="or-divider">
                         <hr><span>OR</span><hr>
                     </div>
-                    <button class="continue-btn" onclick="proceedToCheckout()">CONTINUE WITH LITE SUPPORT</button>
+                    <button class="continue-btn" onclick="proceedToCheckout()">CONTINUE WITH LITE SUPPORT (Free)</button>
                 </div>
             </div>
         </div>

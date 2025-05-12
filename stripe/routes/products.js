@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
                 productId: 'index1',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'AI Content Creation Service',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'AI Content Creation Service',
                    
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
                 productId: 'index2',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Virtual Event Production Service',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Virtual Event Production Service',
                    
@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
                 productId: 'index3',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Ghostwritten Tweetstorm Service',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Ghostwritten Tweetstorm Service',
                  
@@ -39,7 +39,7 @@ router.get('/', async (req, res) => {
                 productId: 'index4',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Lead Gen for Agencies',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Lead Gen for Agencies',
 
@@ -49,7 +49,7 @@ router.get('/', async (req, res) => {
                 productId: 'index5',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'LinkedIn Post Ghostwriter',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'LinkedIn Post Ghostwriter',
 
@@ -59,7 +59,7 @@ router.get('/', async (req, res) => {
                 productId: 'index6',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Email Newsletter Service',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Email Newsletter Service',
 
@@ -69,7 +69,7 @@ router.get('/', async (req, res) => {
                 productId: 'index7',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'AI Resume Optimizer',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'AI Resume Optimizer',
 
@@ -79,7 +79,7 @@ router.get('/', async (req, res) => {
                 productId: 'index8',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'UGC Creator for Brand Deals',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'UGC Creator for Brand Deals',
 
@@ -89,7 +89,7 @@ router.get('/', async (req, res) => {
                 productId: 'index9',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'AI Resume Writer Service',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'AI Resume Writer Service',
 
@@ -99,7 +99,7 @@ router.get('/', async (req, res) => {
                 productId: 'index10',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'AI Facebook Group Moderator',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'AI Facebook Group Moderator',
 
@@ -109,7 +109,7 @@ router.get('/', async (req, res) => {
                 productId: 'index11',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'AI Affiliate Blog Builder',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'AI Affiliate Blog Builder',
 
@@ -119,7 +119,7 @@ router.get('/', async (req, res) => {
                 productId: 'index12',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'AI YouTube Script Writer',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'AI YouTube Script Writer',
 
@@ -129,7 +129,7 @@ router.get('/', async (req, res) => {
                 productId: 'index13',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'AI-Generated Printable Products Shop',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'AI-Generated Printable Products Shop',
 
@@ -139,7 +139,7 @@ router.get('/', async (req, res) => {
                 productId: 'index14',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Local Facebook Ad Service',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Local Facebook Ad Service',
 
@@ -149,7 +149,7 @@ router.get('/', async (req, res) => {
                 productId: 'index15',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Google Reviews Consultant',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Google Reviews Consultant',
 
@@ -159,7 +159,7 @@ router.get('/', async (req, res) => {
                 productId: 'index16',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Newsletter Sponsorship Broker',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Newsletter Sponsorship Broker',
 
@@ -169,7 +169,7 @@ router.get('/', async (req, res) => {
                 productId: 'index17',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Local Services Promoter',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Local Services Promoter',
 
@@ -179,7 +179,7 @@ router.get('/', async (req, res) => {
                 productId: 'index18',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Etsy Niche Shop Setup',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Etsy Niche Shop Setup',
 
@@ -189,7 +189,7 @@ router.get('/', async (req, res) => {
                 productId: 'index19',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'LinkedIn DM Offer Funnel',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'LinkedIn DM Offer Funnel',
 
@@ -199,7 +199,7 @@ router.get('/', async (req, res) => {
                 productId: 'index20',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Fiverr Gig Automation',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Fiverr Gig Automation',
 
@@ -209,7 +209,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex1',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Dentist',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Dentist',
 
@@ -220,7 +220,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex2',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Lawyer',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Lawyer',
 
@@ -231,7 +231,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex3',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Architect',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Architect',
 
@@ -242,7 +242,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex4',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Psychologist / Therapist',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Psychologist / Therapist',
 
@@ -253,7 +253,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex5',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Financial Advisor',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Financial Advisor',
 
@@ -264,7 +264,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex6',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Real Estate Agent',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Real Estate Agent',
 
@@ -275,7 +275,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex7',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Accountant/CPA',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Accountant/CPA',
 
@@ -286,7 +286,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex8',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Personal Trainer',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Personal Trainer',
 
@@ -297,7 +297,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex9',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Nutritionist/Dietitian',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Nutritionist/Dietitian',
 
@@ -308,7 +308,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex10',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Beautician',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Beautician',
 
@@ -319,7 +319,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex11',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Hairdresser',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Hairdresser',
 
@@ -330,7 +330,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex12',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Virtual Assistant',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Virtual Assistant',
 
@@ -341,7 +341,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex13',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Bookkeeper',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: {
                     kitName: 'Bookkeeper',
 
@@ -352,7 +352,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex14',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Photographer',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: { kitName: 'Photographer' },
                 isBusiness: true,
             },
@@ -360,7 +360,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex15',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Online Coach',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: { kitName: 'Online Coach' },
                 isBusiness: true,
             },
@@ -368,7 +368,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex16',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Electrician',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: { kitName: 'Electrician' },
                 isBusiness: true,
             },
@@ -376,7 +376,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex17',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Plumber',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: { kitName: 'Plumber' },
                 isBusiness: true,
             },
@@ -384,7 +384,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex18',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Painter',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: { kitName: 'Painter' },
                 isBusiness: true,
             },
@@ -392,7 +392,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex19',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Carpenter',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: { kitName: 'Carpenter' },
                 isBusiness: true,
             },
@@ -400,7 +400,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex20',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Landscaper',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: { kitName: 'Landscaper' },
                 isBusiness: true,
             },
@@ -408,7 +408,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex21',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Roofer',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: { kitName: 'Roofer' },
                 isBusiness: true,
             },
@@ -416,7 +416,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex22',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Flooring Installer',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: { kitName: 'Flooring Installer' },
                 isBusiness: true,
             },
@@ -424,7 +424,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex23',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Cleaning Service',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: { kitName: 'Cleaning Service' },
                 isBusiness: true,
             },
@@ -432,7 +432,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex24',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Handyman',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: { kitName: 'Handyman' },
                 isBusiness: true,
             },
@@ -440,7 +440,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex25',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Mobile Car Detailer',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: { kitName: 'Mobile Car Detailer' },
                 isBusiness: true,
             },
@@ -448,7 +448,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex26',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Website Designer',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: { kitName: 'Website Designer' },
                 isBusiness: true,
             },
@@ -456,7 +456,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex27',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'E-commerce Seller',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: { kitName: 'E-commerce Seller' },
                 isBusiness: true,
             },
@@ -464,7 +464,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex28',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Social Media Manager',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: { kitName: 'Social Media Manager' },
                 isBusiness: true,
             },
@@ -472,7 +472,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex29',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Facebook Ads Consultant',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: { kitName: 'Facebook Ads Consultant' },
                 isBusiness: true,
             },
@@ -480,7 +480,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex30',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'AI Integration Consultant',
-                price: '$199.00/month',
+                price: '$199 ',
                 meta: { kitName: 'AI Integration Consultant' },
                 isBusiness: true,
             }
