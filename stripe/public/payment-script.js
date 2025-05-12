@@ -25,164 +25,282 @@
 
     // Load product data when page loads
     document.addEventListener('DOMContentLoaded', fetchProductMapping);
-    function injectPopupHTML() {
-        if (window.popupInjected) return;
+function injectPopupHTML() {
+    if (window.popupInjected) return;
     window.popupInjected = true;
 
-    // Inject CSS (scoped to .my-stripe-popup-root)
     if (!document.getElementById('my-stripe-popup-style')) {
-            const style = document.createElement('style');
-    style.id = 'my-stripe-popup-style';
-    style.innerHTML = `
-    .my-stripe-popup-root {font - family: Arial, sans-serif !important; }
-    .my-stripe-popup-root .popup-overlay {
-        display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(0,0,0,0.5); z-index: 99999; justify-content: center; align-items: center;
-}
-    .my-stripe-popup-root .popup-content {
-        background: #fff; padding: 20px; border-radius: 12px; width: 95%; max-width: 800px;padding-top:30px;padding-bottom:30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: flex; flex-direction: column; gap: 16px;
-}
-    .my-stripe-popup-root .popup-header {
-        display: flex; justify-content: space-between; align-items: center; margin-bottom: 0;
-}
-    .my-stripe-popup-root .popup-title {
-        font - size: 24px; font-weight: bold; margin: 0 0 2px 0;
-}
-    .my-stripe-popup-root .close-x {
-        font - size: 22px; cursor: pointer; color: #999; font-weight: normal; line-height: 1;
-}
-    .my-stripe-popup-root .plan-summary {
-        background: #f9f9f9; border: 1px solid #eee; border-radius: 12px; padding: 12px; margin-bottom: 0;
-    display: flex; flex-direction: column; gap: 4px;
-}
-    .my-stripe-popup-root .plan-cards {display: flex; gap: 10px; }
-    .my-stripe-popup-root .plan-card {
-        flex: 1; background: #fff; border-radius: 10px; border: 1px solid #eee; padding: 14px;
-    display: flex; flex-direction: column; justify-content: space-between; min-width: 0;
-}
-    .my-stripe-popup-root .plan-card-title {
-        font - size: 15px; font-weight: 600; color: #666; margin-bottom: 2px;
-}
-    .my-stripe-popup-root .plan-card-price {
-        font - size: 20px; font-weight: bold; color: #000; margin-top: 3px ;margin-bottom: 12px ;
-}
-    .my-stripe-popup-root .plan-card-oldprice {
-        color: #999; text-decoration: line-through; font-size: 15px; font-weight: normal; margin-left: 6px;
-}
-    .my-stripe-popup-root .plan-card-period {
-        font - size: 13px; color: #666; margin-left: 2px;
-}
-    .my-stripe-popup-root .plan-card ul {
-        list-style: none; padding: 0; font-size: 14px; color: #444; margin: 0 0 10px 0;
-}
+        const style = document.createElement('style');
+        style.id = 'my-stripe-popup-style';
+        style.innerHTML = `
+            .my-stripe-popup-root {
+                font-family: Arial, sans-serif !important;
+            }
+            .my-stripe-popup-root .popup-overlay {
+                display: none;
+                position: fixed;
+                top: 0; left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0,0,0,0.5);
+                z-index: 99999;
+                justify-content: center;
+                align-items: center;
+            }
+            .my-stripe-popup-root .popup-content {
+                background: #fff;
+                padding: 16px;
+                border-radius: 12px;
+                width: 95%;
+                max-width: 1000px;
+                max-height: 100vh;
+                overflow-y: auto;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            .my-stripe-popup-root .popup-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .my-stripe-popup-root .popup-title {
+                font-size: 20px;
+                font-weight: bold;
+            }
+            .my-stripe-popup-root .close-x {
+                font-size: 20px;
+                cursor: pointer;
+                color: #999;
+                font-weight: normal;
+            }
+            .my-stripe-popup-root .plan-summary {
+                background: #f9f9f9;
+                border: 1px solid #eee;
+                border-radius: 10px;
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+            }
+            .my-stripe-popup-root .plan-cards {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+            .my-stripe-popup-root .plan-card {
+                flex: 1;
+                min-width: 280px;
+                background: #fff;
+                border-radius: 10px;
+                border: 1px solid #eee;
+                padding: 12px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            .my-stripe-popup-root .plan-card-title {
+                font-size: 15px;
+                font-weight: 600;
+                color: #666;
+            }
+            .my-stripe-popup-root .plan-card-price {
+                font-size: 18px;
+                font-weight: bold;
+                color: #000;
+                margin: 5px 0;
+            }
+            .my-stripe-popup-root .plan-card-oldprice {
+                color: #999;
+                text-decoration: line-through;
+                font-size: 14px;
+                margin-left: 6px;
+            }
+            .my-stripe-popup-root .plan-card-period {
+                font-size: 13px;
+                color: #666;
+                margin-left: 2px;
+            }
+            .my-stripe-popup-root .plan-card ul {
+                list-style: none;
+                padding-left: 0;
+                font-size: 13px;
+                color: #444;
+                margin: 10px 0;
+            }
 
-  .my-stripe-popup-root .plan-card li {
-        list-style: none;
-}
-    .my-stripe-popup-root .plan-btn {
-        padding: 10px 0;
-    background: #3B0764;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-    transition: background 0.2s;
-    font-family: Arial, sans-serif;
-}
-    .my-stripe-popup-root .plan-btn.elite {background: #8044FF; }
-    .my-stripe-popup-root .plan-btn.premium {background: #3B0764; }
-    .my-stripe-popup-root .plan-btn:hover {opacity: 0.92; }
-    .my-stripe-popup-root .or-divider {
-        display: flex; align-items: center; text-align: center; margin: 0px 0 0 0; height: 24px;
-}
-    .my-stripe-popup-root .or-divider hr {flex: 1; border: none; border-top: 1px solid #ccc; margin: 0; }
-    .my-stripe-popup-root .or-divider span {
-        padding: 0 6px; font-size: 12px; color: #666; background: #fff; position: relative; z-index: 1; font-family: Arial, sans-serif;
-}
-    .my-stripe-popup-root .continue-btn {
-        padding: 10px 0;
-    background: #fff;
-    color: #666;
-    border: 1.5px solid #666;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-    transition: background 0.2s, color 0.2s;
-    font-family: Arial, sans-serif;
-    text-transform: uppercase;
-}
-    .my-stripe-popup-root .continue-btn:hover {background: #000; color: #fff; }
-    @media (max-width: 768px) {
-.my - stripe - popup - root.plan - cards {flex - direction: column; gap: 10px; }
-    .my-stripe-popup-root .popup-content {padding: 10px; }
-}
-    `;
-    document.head.appendChild(style);
-        }
+               .my-stripe-popup-root .plan-card li{
+               line-height: 1.9;
+               }
+            .my-stripe-popup-root .plan-btn {
+                padding: 10px;
+                background: #3B0764;
+                color: #fff;
+                border: none;
+                border-radius: 6px;
+                font-size: 12px;
+                font-weight: 600;
+                cursor: pointer;
+                width: 100%;
+                margin-top: 10px;
+            }
+            .my-stripe-popup-root .plan-btn.elite { background: #8044FF; }
+            .my-stripe-popup-root .plan-btn.premium { background: #3B0764; }
+            .my-stripe-popup-root .plan-btn:hover { opacity: 0.92; }
+    
+            .my-stripe-popup-root .or-divider {
+                display: flex;
+                align-items: center;
+                text-align: center;
+                margin: 0;
+                height: 24px;
+            }
+            .my-stripe-popup-root .or-divider hr {
+                flex: 1;
+                border: none;
+                border-top: 1px solid #ccc;
+                margin: 0;
+            }
+            .my-stripe-popup-root .or-divider span {
+                padding: 0 6px;
+                font-size: 12px;
+                color: #666;
+                background: #fff;
+                position: relative;
+                z-index: 1;
+            }
+            .my-stripe-popup-root .continue-btn {
+                padding: 10px;
+                background: #fff;
+                color: #666;
+                border: 1.5px solid #666;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: 600;
+                cursor: pointer;
+                width: 100%;
+                transition: background 0.2s, color 0.2s;
+                text-transform: uppercase;
+            }
+            .my-stripe-popup-root .continue-btn:hover {
+                background: #000;
+                color: #fff;
+            }
+    
+            @media (max-width: 768px) {
+                .my-stripe-popup-root .plan-cards {
+                    flex-direction: column;
+                }
+                .my-stripe-popup-root .popup-content {
+                    padding: 12px;
+                }
+            }
+            `;
+        document.head.appendChild(style);
+    }
 
-    // Popup HTML (no inline styles, all classes)
     const popupHTML = `
-    <div class="my-stripe-popup-root">
-        <div class="popup-overlay" id="popupOverlay">
-            <div class="popup-content">
-                <div class="popup-header">
-                    <div class="popup-title">Checkout Details</div>
-                    <span class="close-x" onclick="closePopup()">&times;</span>
-                </div>
-                <div class="plan-summary" id="selectedPlanSummary">
-                    <div id="kitName" style="font-size:13px;color:#666;font-weight:500;"></div>
-                    <div><span id="planPrice" style="font-size:20px;font-weight:700;color:#000;"></span></div>
-                </div>
-                <div style="padding:5px 0;">
-                    <h3 style="font-size:18px;color:#666;margin:0;">Choose a support plan to get our support.</h3>
-                </div>
-                <div class="plan-cards">
-                    <div class="plan-card">
-                        <div>
-                            <div class="plan-card-title">PREMIUM</div>
-                            <div class="plan-card-price">$99 <span class="plan-card-oldprice">$199</span> <span class="plan-card-period">/mo</span></div>
-                            <ul>
-                                <li>✓ Dedicated Account Manager</li>
-                                <li>✓ Priority Support (24-48 hr turnaround)</li>
-                                <li>✓ Standard(Service Level Agreement)</li>
-                                <li>✓ Access to Premium Templates/Assets</li>
-                            </ul>
+        <div class="my-stripe-popup-root">
+            <div class="popup-overlay" id="popupOverlay">
+                <div class="popup-content">
+                    <div class="popup-header">
+                        <div class="popup-title">Checkout</div>
+                        <span class="close-x" onclick="closePopup()">&times;</span>
+                    </div>
+                    <div class="plan-summary" id="selectedPlanSummary">
+                        <div id="kitName" style="font-size:13px;color:#666;font-weight:500;"></div>
+                        <div><span id="planPrice" style="font-size:20px;font-weight:700;color:#000;"></span></div>
+                    </div>
+                    <div>
+                        <h3 style="font-size:16px; margin:0;">
+                            <span style="font-size:13px;color:#666;font-weight:500; margin-bottom:3px;">Help your business grow </span><br>
+                            <span style="font-size:20px;font-weight:700;color:#000;">Growth Lab: choose a Support Plan</span>
+                        </h3>
+                    </div>
+                    <div class="plan-cards">
+                        <div class="plan-card">
+                            <div>
+                                <div class="plan-card-title">PREMIUM</div>
+                                <div style="color: #28a745; font-size:10px; font-weight: bold; margin-left: 139px ;">Limited time offer – 50% discount</div>
+         <div style="display: flex; align-items: flex-start; gap: 30px;">
+                                    <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
+                                        <span style="font-size: 22px; margin-right: 4px;">✕</span>
+                                        <span style="text-decoration: line-through;">$99</span>
+                                        <span style="font-size: 18px; margin-left: 2px;">/month</span>
+                                    </div>
+                                    <div>
+                                    
+                                        <div style="color: #222; font-size: 24px; font-weight: 700; display: flex; align-items: center;">
+                                            <span style="font-size: 18px; color: #888; margin-right: 4px;">✓</span>
+                                            $49<span style="font-size: 18px; font-weight: 400; margin-left: 2px;">/month</span>
+                                        </div>
+                                        <div style="font-size: 10px; color: #444; margin-top: 0px; margin-left: 0px;">
+                                            Discount guaranteed for 12 months
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <ul style="list-style: none; padding-left: 0;">
+  <li><span style="margin-right: 9px;">✓</span> Everything in Lite Support – plus</li>
+  <li><span style="margin-right: 9px;">✓</span> Email support for marketing help and launch strategy</li>
+  <li><span style="margin-right: 9px;">✓</span> Extra AI tools and advanced templates</li>
+  <li><span style="margin-right: 9px;">✓</span> New kit previews before public release</li>
+  <li><span style="margin-right: 9px;">✓</span> Concierge tips on pricing, positioning, and upsells</li>
+  <li><span style="margin-right: 9px;">✓</span> 10+ bonus templates for outreach, upsells, and social proof</li>
+  <li><strong><span style="margin-right: 9px;">✓</span> BONUS:</strong> 3 exclusive Canva templates</li>
+</ul>
+
+                            </div>
+                            <button class="plan-btn premium" onclick="proceedToCheckout('price_1RMRqWFRtxUdrNGCUYfXbac8')">CONTINUE WITH PREMIUM</button>
                         </div>
-                        <button class="plan-btn premium" onclick="proceedToCheckout('price_1RMRqWFRtxUdrNGCUYfXbac8')">CONTINUE WITH PREMIUM</button>
-                    </div>
-                    <div class="plan-card">
-                        <div>
-                            <div class="plan-card-title">ELITE</div>
-                            <div class="plan-card-price">$199 <span class="plan-card-oldprice">$99</span> <span class="plan-card-period">/mo</span></div>
-                            <ul>
-                                <li>✓ Everything in Premium</li>
-                                <li>✓ Personalized Project Manager</li>
-                                <li>✓ AI-Powered Insights/Recommendations</li>
-                                <li>✓ Dedicated Slack/Phone Support</li>
-                            </ul>
+    
+                        <div class="plan-card">
+                            <div>
+                                <div class="plan-card-title">ELITE</div>
+                                  <div style="color: #28a745; font-size:10px; font-weight: bold;  margin-left: 149px ;">Limited time offer – 50% discount</div>
+                             <div style="display: flex; align-items: flex-start; gap: 30px;">
+                                    <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
+                                        <span style="font-size: 22px; margin-right: 4px;">✕</span>
+                                        <span style="text-decoration: line-through;">$199</span>
+                                        <span style="font-size: 18px; margin-left: 2px;">/month</span>
+                                    </div>
+                                    <div>
+                                        <div style="color: #222; font-size: 24px; font-weight: 700; display: flex; align-items: center;">
+                                            <span style="font-size: 18px; color: #888; margin-right: 4px;">✓</span>
+                                            $99<span style="font-size: 18px; font-weight: 400; margin-left: 2px;">/month</span>
+                                        </div>
+                                        <div style="font-size: 10px; color: #444; margin-top: 2px; margin-left: 0px;">
+                                            Discount guaranteed for 12 months
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                              <ul style="list-style: none; padding-left: 0;">
+  <li><span style="margin-right: 9px;">✓</span> Everything in Premium – plus</li>
+  <li><span style="margin-right: 9px;">✓</span> Custom voice-over walkthroughs and screen-recorded setup videos</li>
+  <li><span style="margin-right: 9px;">✓</span> Brand Personalization — logo, color palette, banner image, profile assets</li>
+  <li><span style="margin-right: 9px;">✓</span> Use us as your personal expert mentor and advisor — 24/7 access</li>
+  <li><span style="margin-right: 9px;">✓</span> Full ORM — 24/7 online monitoring, suppression, and takedown support</li>
+  <li><span style="margin-right: 9px;">✓</span> Front-of-queue support with fast response times</li>
+  <li><strong><span style="margin-right: 9px;">✓</span> BONUS:</strong> 3 exclusive Canva templates</li>
+</ul>
+
+                            </div>
+                            <button class="plan-btn elite" onclick="proceedToCheckout('price_1RMRlVFRtxUdrNGC0raPhXjS')">CONTINUE WITH ELITE</button>
                         </div>
-                        <button class="plan-btn elite" onclick="proceedToCheckout('price_1RMRlVFRtxUdrNGC0raPhXjS')">CONTINUE WITH ELITE</button>
                     </div>
-                </div>
-                <div class="or-divider">
-                    <hr><span>OR</span><hr>
+                    <div class="or-divider">
+                        <hr><span>OR</span><hr>
                     </div>
-                        <button class="continue-btn" onclick="proceedToCheckout()">Continue without support</button>
+                    <button class="continue-btn" onclick="proceedToCheckout()">CONTINUE WITH LITE SUPPORT</button>
                 </div>
             </div>
         </div>
         `;
-
-        document.body.insertAdjacentHTML('beforeend', popupHTML);
-    }
+    document.body.insertAdjacentHTML('beforeend', popupHTML);
+}
+    
 
         async function openPopup(productId) {
     try {
