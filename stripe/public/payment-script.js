@@ -1,4 +1,3 @@
-
 // Load API URL from environment variable
     const API_URL = window.API_URL || 'https://stripe-payment.algofolks.com/api';
     // const API_URL = window.API_URL || 'http://192.168.1.7:3000/api';
@@ -287,3 +286,28 @@
         alert('Error creating checkout session. Please try again.');
     }
 }
+
+//buy now button click event apply
+
+document.addEventListener('DOMContentLoaded', function() {
+  // 1. Get productId from URL
+  var urls = window.location.href.split("/");
+    var productId = urls[urls.length - 2].replace('-', '');
+
+  // 2. Find the Buy Now button
+  const buttons = document.querySelectorAll('button');
+  let buyNowButton = null;
+  for (const button of buttons) {
+    if (button.textContent.trim().toLowerCase().includes('buy now')) {
+      buyNowButton = button;
+      break;
+    }
+  }
+
+  // 3. Assign click event
+  if (buyNowButton && productId) {
+    buyNowButton.addEventListener('click', function() {
+      openPopup(productId);
+    });
+  }
+});
