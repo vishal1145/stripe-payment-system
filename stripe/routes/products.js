@@ -205,254 +205,284 @@ router.get('/', async (req, res) => {
 
                 }
             },
-            'businessIndex1': {
-                productId: 'businessIndex1',
+            'businessindex1': {
+                productId: 'businessindex1',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Dentist',
                 price: '$199.00/month',
                 meta: {
                     kitName: 'Dentist',
 
-                }
+                },
+                isBusiness: true,
             },
-            'businessIndex2': {
-                productId: 'businessIndex2',
+            'businessindex2': {
+                productId: 'businessindex2',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Lawyer',
                 price: '$199.00/month',
                 meta: {
                     kitName: 'Lawyer',
 
-                }
+                },
+                isBusiness: true,
             },
-            'businessIndex3': {
-                productId: 'businessIndex3',
+            'businessindex3': {
+                productId: 'businessindex3',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Architect',
                 price: '$199.00/month',
                 meta: {
                     kitName: 'Architect',
 
-                }
+                },
+                isBusiness: true,
             },
-            'businessIndex4': {
-                productId: 'businessIndex4',
+            'businessindex4': {
+                productId: 'businessindex4',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Psychologist / Therapist',
                 price: '$199.00/month',
                 meta: {
                     kitName: 'Psychologist / Therapist',
 
-                }
+                },
+                isBusiness: true,
             },
-            'businessIndex5': {
-                productId: 'businessIndex5',
+            'businessindex5': {
+                productId: 'businessindex5',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Financial Advisor',
                 price: '$199.00/month',
                 meta: {
                     kitName: 'Financial Advisor',
 
-                }
+                },
+                isBusiness: true,
             },
-            'businessIndex6': {
-                productId: 'businessIndex6',
+            'businessindex6': {
+                productId: 'businessindex6',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Real Estate Agent',
                 price: '$199.00/month',
                 meta: {
                     kitName: 'Real Estate Agent',
 
-                }
+                },
+                isBusiness: true,
             },
-            'businessIndex7': {
-                productId: 'businessIndex7',
+            'businessindex7': {
+                productId: 'businessindex7',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Accountant/CPA',
                 price: '$199.00/month',
                 meta: {
                     kitName: 'Accountant/CPA',
 
-                }
+                },
+                isBusiness: true,
             },
-            'businessIndex8': {
-                productId: 'businessIndex8',
+            'businessindex8': {
+                productId: 'businessindex8',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Personal Trainer',
                 price: '$199.00/month',
                 meta: {
                     kitName: 'Personal Trainer',
 
-                }
+                },
+                isBusiness: true,
             },
-            'businessIndex9': {
-                productId: 'businessIndex9',
+            'businessindex9': {
+                productId: 'businessindex9',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Nutritionist/Dietitian',
                 price: '$199.00/month',
                 meta: {
                     kitName: 'Nutritionist/Dietitian',
 
-                }
+                },
+                isBusiness: true,
             },
-            'businessIndex10': {
-                productId: 'businessIndex10',
+            'businessindex10': {
+                productId: 'businessindex10',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Beautician',
                 price: '$199.00/month',
                 meta: {
                     kitName: 'Beautician',
 
-                }
+                },
+                isBusiness: true,
             },
-            'businessIndex11': {
-                productId: 'businessIndex11',
+            'businessindex11': {
+                productId: 'businessindex11',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Hairdresser',
                 price: '$199.00/month',
                 meta: {
                     kitName: 'Hairdresser',
 
-                }
+                },
+                isBusiness: true,
             },
-            'businessIndex12': {
-                productId: 'businessIndex12',
+            'businessindex12': {
+                productId: 'businessindex12',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Virtual Assistant',
                 price: '$199.00/month',
                 meta: {
                     kitName: 'Virtual Assistant',
 
-                }
+                },
+                isBusiness: true,
             },
-            'businessIndex13': {
-                productId: 'businessIndex13',
+            'businessindex13': {
+                productId: 'businessindex13',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Bookkeeper',
                 price: '$199.00/month',
                 meta: {
                     kitName: 'Bookkeeper',
 
-                }
+                },
+                isBusiness: true,
             },
-            businessIndex14: {
-                productId: 'businessIndex14',
+            businessindex14: {
+                productId: 'businessindex14',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Photographer',
                 price: '$199.00/month',
-                meta: { kitName: 'Photographer' }
+                meta: { kitName: 'Photographer' },
+                isBusiness: true,
             },
-            businessIndex15: {
-                productId: 'businessIndex15',
+            businessindex15: {
+                productId: 'businessindex15',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Online Coach',
                 price: '$199.00/month',
-                meta: { kitName: 'Online Coach' }
+                meta: { kitName: 'Online Coach' },
+                isBusiness: true,
             },
-            businessIndex16: {
-                productId: 'businessIndex16',
+            businessindex16: {
+                productId: 'businessindex16',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Electrician',
                 price: '$199.00/month',
-                meta: { kitName: 'Electrician' }
+                meta: { kitName: 'Electrician' },
+                isBusiness: true,
             },
-            businessIndex17: {
-                productId: 'businessIndex17',
+            businessindex17: {
+                productId: 'businessindex17',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Plumber',
                 price: '$199.00/month',
-                meta: { kitName: 'Plumber' }
+                meta: { kitName: 'Plumber' },
+                isBusiness: true,
             },
-            businessIndex18: {
-                productId: 'businessIndex18',
+            businessindex18: {
+                productId: 'businessindex18',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Painter',
                 price: '$199.00/month',
-                meta: { kitName: 'Painter' }
+                meta: { kitName: 'Painter' },
+                isBusiness: true,
             },
-            businessIndex19: {
-                productId: 'businessIndex19',
+            businessindex19: {
+                productId: 'businessindex19',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Carpenter',
                 price: '$199.00/month',
-                meta: { kitName: 'Carpenter' }
+                meta: { kitName: 'Carpenter' },
+                isBusiness: true,
             },
-            businessIndex20: {
-                productId: 'businessIndex20',
+            businessindex20: {
+                productId: 'businessindex20',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Landscaper',
                 price: '$199.00/month',
-                meta: { kitName: 'Landscaper' }
+                meta: { kitName: 'Landscaper' },
+                isBusiness: true,
             },
-            businessIndex21: {
-                productId: 'businessIndex21',
+            businessindex21: {
+                productId: 'businessindex21',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Roofer',
                 price: '$199.00/month',
-                meta: { kitName: 'Roofer' }
+                meta: { kitName: 'Roofer' },
+                isBusiness: true,
             },
-            businessIndex22: {
-                productId: 'businessIndex22',
+            businessindex22: {
+                productId: 'businessindex22',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Flooring Installer',
                 price: '$199.00/month',
-                meta: { kitName: 'Flooring Installer' }
+                meta: { kitName: 'Flooring Installer' },
+                isBusiness: true,
             },
-            businessIndex23: {
-                productId: 'businessIndex23',
+            businessindex23: {
+                productId: 'businessindex23',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Cleaning Service',
                 price: '$199.00/month',
-                meta: { kitName: 'Cleaning Service' }
+                meta: { kitName: 'Cleaning Service' },
+                isBusiness: true,
             },
-            businessIndex24: {
-                productId: 'businessIndex24',
+            businessindex24: {
+                productId: 'businessindex24',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Handyman',
                 price: '$199.00/month',
-                meta: { kitName: 'Handyman' }
+                meta: { kitName: 'Handyman' },
+                isBusiness: true,
             },
-            businessIndex25: {
-                productId: 'businessIndex25',
+            businessindex25: {
+                productId: 'businessindex25',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Mobile Car Detailer',
                 price: '$199.00/month',
-                meta: { kitName: 'Mobile Car Detailer' }
+                meta: { kitName: 'Mobile Car Detailer' },
+                isBusiness: true,
             },
-            businessIndex26: {
-                productId: 'businessIndex26',
+            businessindex26: {
+                productId: 'businessindex26',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Website Designer',
                 price: '$199.00/month',
-                meta: { kitName: 'Website Designer' }
+                meta: { kitName: 'Website Designer' },
+                isBusiness: true,
             },
-            businessIndex27: {
-                productId: 'businessIndex27',
+            businessindex27: {
+                productId: 'businessindex27',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'E-commerce Seller',
                 price: '$199.00/month',
-                meta: { kitName: 'E-commerce Seller' }
+                meta: { kitName: 'E-commerce Seller' },
+                isBusiness: true,
             },
-            businessIndex28: {
-                productId: 'businessIndex28',
+            businessindex28: {
+                productId: 'businessindex28',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Social Media Manager',
                 price: '$199.00/month',
-                meta: { kitName: 'Social Media Manager' }
+                meta: { kitName: 'Social Media Manager' },
+                isBusiness: true,
             },
-            businessIndex29: {
-                productId: 'businessIndex29',
+            businessindex29: {
+                productId: 'businessindex29',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'Facebook Ads Consultant',
                 price: '$199.00/month',
-                meta: { kitName: 'Facebook Ads Consultant' }
+                meta: { kitName: 'Facebook Ads Consultant' },
+                isBusiness: true,
             },
-            businessIndex30: {
-                productId: 'businessIndex30',
+            businessindex30: {
+                productId: 'businessindex30',
                 priceId: 'price_1RNBeaFRtxUdrNGCy0bMFTWr',
                 name: 'AI Integration Consultant',
                 price: '$199.00/month',
-                meta: { kitName: 'AI Integration Consultant' }
+                meta: { kitName: 'AI Integration Consultant' },
+                isBusiness: true,
             }
             
         };

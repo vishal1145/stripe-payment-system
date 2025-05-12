@@ -200,6 +200,147 @@ function injectPopupHTML() {
         document.head.appendChild(style);
     }
 
+    const selectedProduct = JSON.parse(sessionStorage.getItem('selectedProduct') || '{}');
+    const isBusiness = selectedProduct?.isBusiness === true;
+
+    const businessPlanContent = `
+        <div class="plan-card">
+            <div>
+                <div class="plan-card-title">PREMIUM</div>
+                <div style="color: #28a745; font-size:10px; font-weight: bold; margin-left: 139px ;">Limited time offer – 50% discount</div>
+                <div style="display: flex; align-items: flex-start; gap: 30px;">
+                    <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
+                        <span style="font-size: 22px; margin-right: 4px;">✕</span>
+                        <span style="text-decoration: line-through;">$99</span>
+                        <span style="font-size: 18px; margin-left: 2px;">/month</span>
+                    </div>
+                    <div>
+                        <div style="color: #222; font-size: 24px; font-weight: 700; display: flex; align-items: center;">
+                            <span style="font-size: 18px; color: #888; margin-right: 4px;">✓</span>
+                            $49<span style="font-size: 18px; font-weight: 400; margin-left: 2px;">/month</span>
+                        </div>
+                        <div style="font-size: 10px; color: #444; margin-top: 0px; margin-left: 0px;">
+                            Discount guaranteed for 12 months
+                        </div>
+                    </div>
+                </div>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li><span style="margin-right: 9px;">✓</span> Monthly growth ideas, tips, tools + checklist</li>
+                    <li><span style="margin-right: 9px;">✓</span> Marketing prompts, templates + outreach scripts</li>
+                    <li><span style="margin-right: 9px;">✓</span> Ongoing business optimization tools</li>
+                    <li><span style="margin-right: 9px;">✓</span> 1:1 support via email with 24-hour response</li>
+                    <li><span style="margin-right: 9px;">✓</span> Early access to new business packs</li>
+                    <li><span style="margin-right: 9px;">✓</span> AI-powered business analysis tools</li>
+                    <li><span style="margin-right: 9px;">✓</span> Training vault: step-by-step guides for common tasks</li>
+                    <li><span style="margin-right: 9px;">✓</span> Bonus: Canva branding kit + social posts</li>
+                    <li><span style="margin-right: 9px;">✓</span> Quarterly content refresh + trend adaptation</li>
+                    <li><span style="margin-right: 9px;">✓</span> AI optimization prompts and training</li>
+                </ul>
+            </div>
+            <button class="plan-btn premium" onclick="proceedToCheckout('price_1RNrEVFRtxUdrNGCfD9u4SYF')">CONTINUE WITH PREMIUM</button>
+        </div>
+
+        <div class="plan-card">
+            <div>
+                <div class="plan-card-title">ELITE</div>
+                <div style="color: #28a745; font-size:10px; font-weight: bold; margin-left: 149px ;">Limited time offer – 50% discount</div>
+                <div style="display: flex; align-items: flex-start; gap: 30px;">
+                    <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
+                        <span style="font-size: 22px; margin-right: 4px;">✕</span>
+                        <span style="text-decoration: line-through;">$199</span>
+                        <span style="font-size: 18px; margin-left: 2px;">/month</span>
+                    </div>
+                    <div>
+                        <div style="color: #222; font-size: 24px; font-weight: 700; display: flex; align-items: center;">
+                            <span style="font-size: 18px; color: #888; margin-right: 4px;">✓</span>
+                            $99<span style="font-size: 18px; font-weight: 400; margin-left: 2px;">/month</span>
+                        </div>
+                        <div style="font-size: 10px; color: #444; margin-top: 2px; margin-left: 0px;">
+                            Discount guaranteed for 12 months
+                        </div>
+                    </div>
+                </div>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li><span style="margin-right: 9px;">✓</span> Includes all Premium features - plus</li>
+                    <li><span style="margin-right: 9px;">✓</span> Use us as your personal expert mentor and advisor — 24/7 email support</li>
+                    <li><span style="margin-right: 9px;">✓</span> Done-for-you upgrades, scripts, reviews, redesigns</li>
+                    <li><span style="margin-right: 9px;">✓</span> Online Reputation Management (ORM) monitoring + takedown support</li>
+                    <li><span style="margin-right: 9px;">✓</span> 1-on-1 business strategy check-ins (via email)</li>
+                    <li><span style="margin-right: 9px;">✓</span> Brand protection advice</li>
+                    <li><span style="margin-right: 9px;">✓</span> Issue resolution help as needed</li>
+                    <li><span style="margin-right: 9px;">✓</span> Legal & creative usage templates (terms, portfolio rights, privacy)</li>
+                </ul>
+            </div>
+            <button class="plan-btn elite" onclick="proceedToCheckout('price_1RMRqWFRtxUdrNGCUYfXbac8')">CONTINUE WITH ELITE</button>
+        </div>`;
+
+    const regularPlanContent = `
+        <div class="plan-card">
+            <div>
+                <div class="plan-card-title">PREMIUM</div>
+                <div style="color: #28a745; font-size:10px; font-weight: bold; margin-left: 139px ;">Limited time offer – 50% discount</div>
+                <div style="display: flex; align-items: flex-start; gap: 30px;">
+                    <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
+                        <span style="font-size: 22px; margin-right: 4px;">✕</span>
+                        <span style="text-decoration: line-through;">$99</span>
+                        <span style="font-size: 18px; margin-left: 2px;">/month</span>
+                    </div>
+                    <div>
+                        <div style="color: #222; font-size: 24px; font-weight: 700; display: flex; align-items: center;">
+                            <span style="font-size: 18px; color: #888; margin-right: 4px;">✓</span>
+                            $49<span style="font-size: 18px; font-weight: 400; margin-left: 2px;">/month</span>
+                        </div>
+                        <div style="font-size: 10px; color: #444; margin-top: 0px; margin-left: 0px;">
+                            Discount guaranteed for 12 months
+                        </div>
+                    </div>
+                </div>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li><span style="margin-right: 9px;">✓</span> Everything in Lite Support – plus</li>
+                    <li><span style="margin-right: 9px;">✓</span> Email support for marketing help and launch strategy</li>
+                    <li><span style="margin-right: 9px;">✓</span> Extra AI tools and advanced templates</li>
+                    <li><span style="margin-right: 9px;">✓</span> New kit previews before public release</li>
+                    <li><span style="margin-right: 9px;">✓</span> Concierge tips on pricing, positioning, and upsells</li>
+                    <li><span style="margin-right: 9px;">✓</span> 10+ bonus templates for outreach, upsells, and social proof</li>
+                    <li><strong><span style="margin-right: 9px;">✓</span> BONUS:</strong> 3 exclusive Canva templates</li>
+                </ul>
+            </div>
+            <button class="plan-btn premium" onclick="proceedToCheckout('price_1RNrEVFRtxUdrNGCfD9u4SYF')">CONTINUE WITH PREMIUM</button>
+        </div>
+
+        <div class="plan-card">
+            <div>
+                <div class="plan-card-title">ELITE</div>
+                <div style="color: #28a745; font-size:10px; font-weight: bold; margin-left: 149px ;">Limited time offer – 50% discount</div>
+                <div style="display: flex; align-items: flex-start; gap: 30px;">
+                    <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
+                        <span style="font-size: 22px; margin-right: 4px;">✕</span>
+                        <span style="text-decoration: line-through;">$199</span>
+                        <span style="font-size: 18px; margin-left: 2px;">/month</span>
+                    </div>
+                    <div>
+                        <div style="color: #222; font-size: 24px; font-weight: 700; display: flex; align-items: center;">
+                            <span style="font-size: 18px; color: #888; margin-right: 4px;">✓</span>
+                            $99<span style="font-size: 18px; font-weight: 400; margin-left: 2px;">/month</span>
+                        </div>
+                        <div style="font-size: 10px; color: #444;  margin-left: 0px;">
+                            Discount guaranteed for 12 months
+                        </div>
+                    </div>
+                </div>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li><span style="margin-right: 9px;">✓</span> Everything in Premium – plus</li>
+                    <li><span style="margin-right: 9px;">✓</span> Custom voice-over walkthroughs and screen-recorded setup videos</li>
+                    <li><span style="margin-right: 9px;">✓</span> Brand Personalization — logo, color palette, banner image, profile assets</li>
+                    <li><span style="margin-right: 9px;">✓</span> Use us as your personal expert mentor and advisor — 24/7 access</li>
+                    <li><span style="margin-right: 9px;">✓</span> Full ORM — 24/7 online monitoring, suppression, and takedown support</li>
+                    <li><span style="margin-right: 9px;">✓</span> Front-of-queue support with fast response times</li>
+                    <li><strong><span style="margin-right: 9px;">✓</span> BONUS:</strong> 3 exclusive Canva templates</li>
+                </ul>
+            </div>
+            <button class="plan-btn elite" onclick="proceedToCheckout('price_1RMRqWFRtxUdrNGCUYfXbac8')">CONTINUE WITH ELITE</button>
+        </div>`;
+
     const popupHTML = `
         <div class="my-stripe-popup-root">
             <div class="popup-overlay" id="popupOverlay">
@@ -219,76 +360,7 @@ function injectPopupHTML() {
                         </h3>
                     </div>
                     <div class="plan-cards">
-                        <div class="plan-card">
-                            <div>
-                                <div class="plan-card-title">PREMIUM</div>
-                                <div style="color: #28a745; font-size:10px; font-weight: bold; margin-left: 139px ;">Limited time offer – 50% discount</div>
-         <div style="display: flex; align-items: flex-start; gap: 30px;">
-                                    <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
-                                        <span style="font-size: 22px; margin-right: 4px;">✕</span>
-                                        <span style="text-decoration: line-through;">$99</span>
-                                        <span style="font-size: 18px; margin-left: 2px;">/month</span>
-                                    </div>
-                                    <div>
-                                    
-                                        <div style="color: #222; font-size: 24px; font-weight: 700; display: flex; align-items: center;">
-                                            <span style="font-size: 18px; color: #888; margin-right: 4px;">✓</span>
-                                            $49<span style="font-size: 18px; font-weight: 400; margin-left: 2px;">/month</span>
-                                        </div>
-                                        <div style="font-size: 10px; color: #444; margin-top: 0px; margin-left: 0px;">
-                                            Discount guaranteed for 12 months
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <ul style="list-style: none; padding-left: 0;">
-  <li><span style="margin-right: 9px;">✓</span> Everything in Lite Support – plus</li>
-  <li><span style="margin-right: 9px;">✓</span> Email support for marketing help and launch strategy</li>
-  <li><span style="margin-right: 9px;">✓</span> Extra AI tools and advanced templates</li>
-  <li><span style="margin-right: 9px;">✓</span> New kit previews before public release</li>
-  <li><span style="margin-right: 9px;">✓</span> Concierge tips on pricing, positioning, and upsells</li>
-  <li><span style="margin-right: 9px;">✓</span> 10+ bonus templates for outreach, upsells, and social proof</li>
-  <li><strong><span style="margin-right: 9px;">✓</span> BONUS:</strong> 3 exclusive Canva templates</li>
-</ul>
-
-                            </div>
-                            <button class="plan-btn premium" onclick="proceedToCheckout('price_1RMRqWFRtxUdrNGCUYfXbac8')">CONTINUE WITH PREMIUM</button>
-                        </div>
-    
-                        <div class="plan-card">
-                            <div>
-                                <div class="plan-card-title">ELITE</div>
-                                  <div style="color: #28a745; font-size:10px; font-weight: bold;  margin-left: 149px ;">Limited time offer – 50% discount</div>
-                             <div style="display: flex; align-items: flex-start; gap: 30px;">
-                                    <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
-                                        <span style="font-size: 22px; margin-right: 4px;">✕</span>
-                                        <span style="text-decoration: line-through;">$199</span>
-                                        <span style="font-size: 18px; margin-left: 2px;">/month</span>
-                                    </div>
-                                    <div>
-                                        <div style="color: #222; font-size: 24px; font-weight: 700; display: flex; align-items: center;">
-                                            <span style="font-size: 18px; color: #888; margin-right: 4px;">✓</span>
-                                            $99<span style="font-size: 18px; font-weight: 400; margin-left: 2px;">/month</span>
-                                        </div>
-                                        <div style="font-size: 10px; color: #444; margin-top: 2px; margin-left: 0px;">
-                                            Discount guaranteed for 12 months
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                              <ul style="list-style: none; padding-left: 0;">
-  <li><span style="margin-right: 9px;">✓</span> Everything in Premium – plus</li>
-  <li><span style="margin-right: 9px;">✓</span> Custom voice-over walkthroughs and screen-recorded setup videos</li>
-  <li><span style="margin-right: 9px;">✓</span> Brand Personalization — logo, color palette, banner image, profile assets</li>
-  <li><span style="margin-right: 9px;">✓</span> Use us as your personal expert mentor and advisor — 24/7 access</li>
-  <li><span style="margin-right: 9px;">✓</span> Full ORM — 24/7 online monitoring, suppression, and takedown support</li>
-  <li><span style="margin-right: 9px;">✓</span> Front-of-queue support with fast response times</li>
-  <li><strong><span style="margin-right: 9px;">✓</span> BONUS:</strong> 3 exclusive Canva templates</li>
-</ul>
-
-                            </div>
-                            <button class="plan-btn elite" onclick="proceedToCheckout('price_1RMRlVFRtxUdrNGC0raPhXjS')">CONTINUE WITH ELITE</button>
-                        </div>
+                        ${isBusiness ? businessPlanContent : regularPlanContent}
                     </div>
                     <div class="or-divider">
                         <hr><span>OR</span><hr>
@@ -297,7 +369,7 @@ function injectPopupHTML() {
                 </div>
             </div>
         </div>
-        `;
+    `;
     document.body.insertAdjacentHTML('beforeend', popupHTML);
 }
     
@@ -309,15 +381,16 @@ function injectPopupHTML() {
             await fetchProductMapping();
         }
 
-        injectPopupHTML();
-
         const product = productMapping[productId];
         if (!product) {
             console.error('Product not found:', productId);
-        return;
+            return;
         }
 
+        // Store the selected product in session storage
         sessionStorage.setItem('selectedProduct', JSON.stringify(product));
+
+        injectPopupHTML();
 
         const planPriceElement = document.getElementById('planPrice');
         const planKitName = document.getElementById('kitName')
@@ -332,7 +405,7 @@ function injectPopupHTML() {
             popupOverlay.style.display = 'flex';
         }
     } catch (error) {
-            console.error('Error opening popup:', error);
+        console.error('Error opening popup:', error);
     }
 }
 
