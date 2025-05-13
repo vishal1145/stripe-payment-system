@@ -33,7 +33,7 @@ function injectPopupHTML() {
         style.id = 'my-stripe-popup-style';
         style.innerHTML = `
             .my-stripe-popup-root {
-                font-family: Arial, sans-serif !important;
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
             }
             .my-stripe-popup-root .popup-overlay {
                 display: none;
@@ -41,226 +41,389 @@ function injectPopupHTML() {
                 top: 0; left: 0;
                 width: 100vw;
                 height: 100vh;
-                background: rgba(0,0,0,0.5);
+                background: rgba(0,0,0,0.7);
                 z-index: 99999;
                 justify-content: center;
                 align-items: center;
+                backdrop-filter: blur(5px);
             }
             .my-stripe-popup-root .popup-content {
                 background: #fff;
-                padding: 16px;
-                border-radius: 12px;
+                padding: 24px;
+                border-radius: 16px;
                 width: 95%;
                 max-width: 1000px;
-                max-height: 100vh;
+                max-height: 90vh;
                 overflow-y: auto;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.2);
                 display: flex;
                 flex-direction: column;
-                gap: 12px;
+                gap: 20px;
+                animation: slideUp 0.3s ease-out;
+            }
+            @keyframes slideUp {
+                from { transform: translateY(20px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
             }
             .my-stripe-popup-root .popup-header {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                padding-bottom: 16px;
+                border-bottom: 1px solid #f0f0f0;
             }
             .my-stripe-popup-root .popup-title {
-                font-size: 20px;
-                font-weight: bold;
+                font-size: 24px;
+                font-weight: 600;
+                color: #1a1a1a;
             }
-              .my-stripe-popup-root .popup-header img {
-    margin-left: -50PX;
-    width: 150px;
-    height: auto;
-    object-fit: contain;
-    margin-right: -33px;
-}
+            .my-stripe-popup-root .popup-header img {
+                width: 120px;
+                height: auto;
+                object-fit: contain;
+            }
             .my-stripe-popup-root .close-x {
-                font-size: 20px;
+                font-size: 24px;
                 cursor: pointer;
-                color: #999;
-                font-weight: normal;
+                color: #666;
+                font-weight: 300;
+                transition: color 0.2s;
+                width: 32px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                background: #f5f5f5;
+            }
+            .my-stripe-popup-root .close-x:hover {
+                color: #000;
+                background: #ebebeb;
             }
             .my-stripe-popup-root .plan-summary {
-                background: #f9f9f9;
-                border: 1px solid #eee;
-                border-radius: 10px;
-                padding: 10px;
+                background: #f8fafc;
+                border: 1px solid #e5e7eb;
+                border-radius: 12px;
+                padding: 16px;
                 display: flex;
                 flex-direction: column;
-                gap: 4px;
+                gap: 8px;
+                transition: all 0.2s;
+            }
+            .my-stripe-popup-root .plan-summary:hover {
+                border-color: #d1d5db;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             }
             .my-stripe-popup-root .plan-cards {
-                display: flex;
-                gap: 10px;
-                flex-wrap: wrap;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+                margin: 20px 0;
             }
             .my-stripe-popup-root .plan-card {
-                flex: 1;
-                min-width: 280px;
+                position: relative;
                 background: #fff;
-                border-radius: 10px;
-                border: 1px solid #eee;
-                padding: 12px;
+                border-radius: 16px;
+                border: 1px solid #e5e7eb;
+                padding: 24px;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
             }
+            .my-stripe-popup-root .plan-card:before {
+                display: none;
+            }
+            .my-stripe-popup-root .plan-card:hover {
+                border-color: #e5e7eb;
+                transform: none;
+                box-shadow: none;
+            }
             .my-stripe-popup-root .plan-card-title {
-                font-size: 15px;
+                font-size: 16px;
                 font-weight: 600;
-                color: #666;
-            }
-            .my-stripe-popup-root .plan-card-price {
-                font-size: 18px;
-                font-weight: bold;
-                color: #000;
-                margin: 5px 0;
-            }
-            .my-stripe-popup-root .plan-card-oldprice {
-                color: #999;
-                text-decoration: line-through;
-                font-size: 14px;
-                margin-left: 6px;
-            }
-            .my-stripe-popup-root .plan-card-period {
-                font-size: 13px;
-                color: #666;
-                margin-left: 2px;
+                color: #1a1a1a;
+                margin-bottom: 8px;
             }
             .my-stripe-popup-root .plan-card ul {
                 list-style: none;
                 padding-left: 0;
-                font-size: 13px;
-                color: #444;
-                margin: 10px 0;
+                font-size: 14px;
+                color: #4b5563;
+                margin: 16px 0;
             }
-
-               .my-stripe-popup-root .plan-card li{
-               line-height: 1.9;
-               }
+            .my-stripe-popup-root .plan-card li {
+                line-height: 1.8;
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 8px;
+            }
+            .my-stripe-popup-root .plan-card li span {
+                color: #3B0764;
+                font-weight: 600;
+                margin-right: 12px;
+            }
             .my-stripe-popup-root .plan-btn {
-                padding: 10px;
+                padding: 14px;
                 background: #3B0764;
                 color: #fff;
                 border: none;
-                border-radius: 6px;
-                font-size: 12px;
+                border-radius: 8px;
+                font-size: 14px;
                 font-weight: 600;
                 cursor: pointer;
                 width: 100%;
-                margin-top: 10px;
+                margin-top: 20px;
+                transition: all 0.2s;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
             }
-            .my-stripe-popup-root .plan-btn.elite { background: #8044FF; }
-            .my-stripe-popup-root .plan-btn.premium { background: #3B0764; }
-            .my-stripe-popup-root .plan-btn:hover { opacity: 0.92; }
-    
+            .my-stripe-popup-root .plan-btn.elite { 
+                background: #8044FF;
+                background: linear-gradient(135deg, #8044FF 0%, #6D28D9 100%);
+            }
+            .my-stripe-popup-root .plan-btn.premium { 
+                background: #3B0764;
+                background: linear-gradient(135deg, #4C1D95 0%, #3B0764 100%);
+            }
+            .my-stripe-popup-root .plan-btn:hover { 
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            }
             .my-stripe-popup-root .or-divider {
                 display: flex;
                 align-items: center;
                 text-align: center;
-                margin: 0;
+                margin: 24px 0;
                 height: 24px;
             }
             .my-stripe-popup-root .or-divider hr {
                 flex: 1;
                 border: none;
-                border-top: 1px solid #ccc;
+                border-top: 1px solid #e5e7eb;
                 margin: 0;
             }
             .my-stripe-popup-root .or-divider span {
-                padding: 0 6px;
-                font-size: 12px;
-                color: #666;
+                padding: 0 16px;
+                font-size: 14px;
+                color: #6b7280;
                 background: #fff;
-                position: relative;
-                z-index: 1;
+                font-weight: 500;
             }
             .my-stripe-popup-root .continue-btn {
-                padding: 10px;
+                padding: 14px;
                 background: #fff;
-                color: #666;
-                border: 1.5px solid #666;
-                border-radius: 20px;
-                font-size: 12px;
+                color: #374151;
+                border: 2px solid #e5e7eb;
+                border-radius: 8px;
+                font-size: 14px;
                 font-weight: 600;
                 cursor: pointer;
                 width: 100%;
-                transition: background 0.2s, color 0.2s;
+                transition: all 0.2s;
                 text-transform: uppercase;
+                letter-spacing: 0.5px;
             }
             .my-stripe-popup-root .continue-btn:hover {
-                background: #000;
-                color: #fff;
+                background: #f9fafb;
+                border-color: #d1d5db;
+                color: #111827;
             }
-    
-            @media (max-width: 768px) {
-                .my-stripe-popup-root .plan-cards {
-                    flex-direction: column;
-                }
-                .my-stripe-popup-root .popup-content {
-                    padding: 12px;
-                }
+            .premium-plan-header, .elite-plan-header {
+                margin-bottom: 20px;
+                padding-bottom: 16px;
+                border-bottom: 1px solid #f0f0f0;
+                position: relative;
             }
-            .premium-plan-header {
-                margin-bottom: 10px;
+            .premium-badge, .elite-badge {
+                position: absolute;
+                top: -12px;
+                right: -12px;
+                padding: 6px 12px;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                text-transform: uppercase;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             }
-            .premium-bold {
-                font-weight: bold;
-                font-size: 1em;
-              color: #666;
+            .premium-badge {
+                               box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                background: rgba(128, 68, 255, 0.1);
+                color: #6D28D9;
+                border: 1px solid rgba(128, 68, 255, 0.2);
             }
-            .premium-normal {
-                font-weight: normal;
-                font-size: 1em;
-                color: #666;
+            .elite-badge {
+                position: absolute;
+                top: -12px;
+                right: 80px;
+                padding: 6px 12px;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                text-transform: uppercase;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                background: rgba(128, 68, 255, 0.1);
+                color: #6D28D9;
+                border: 1px solid rgba(128, 68, 255, 0.2);
             }
-            .premium-subtext {
+            .premium-bold, .elite-bold {
+                font-size: 24px;
+                font-weight: 700;
+                color: #1a1a1a;
+                display: block;
+                margin-bottom: 6px;
+                background: linear-gradient(135deg, #3B0764 0%, #4C1D95 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .premium-normal, .elite-normal {
+                font-weight: 500;
+                font-size: 15px;
+                color: #6b7280;
+                display: block;
+                margin-bottom: 8px;
+            }
+            .premium-subtext, .elite-subtext {
                 font-size: 14px;
-                color: #222;
-                margin-top: 2px;
-            }
-            .elite-plan-header {
-                display: flex;
-                align-items: flex-start;
-                justify-content: space-between;
-                margin-bottom: 10px;
-                
-            }
-            .elite-bold {
-                font-weight: bold;
-                font-size: 1em;
-                  color: #666;
-            }
-            .elite-normal {
-                font-weight: normal;
-                font-size: 1em;
-                  color: #666;
-            }
-            .elite-subtext {
-                font-size: 14px;
-                color: #222;
-                margin-top: 2px;
-            }
-            .best-value-badge {
-                border: 2px solid #222;
-                padding: 10px 7px 10px 7px;
+                color:rgb(5, 5, 5);
+                margin-top: 8px;
+                font-weight: 600;
                 display: flex;
                 align-items: center;
-                height: 30px;
-                min-width: 100px;
-                justify-content: center;
+                gap: 6px;
+            }
+            .premium-subtext:before, .elite-subtext:before {
+                content: "✓";
+                color:rgb(3, 3, 3);
+                font-weight: bold;
+            }
+            .plan-card {
+                position: relative;
+                overflow: visible !important;
+            }
+            .plan-card:before {
+                content: "";
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                right: -2px;
+                bottom: -2px;
+                border-radius: 18px;
+                background: linear-gradient(135deg, #3B0764 0%, #4C1D95 100%);
+                opacity: 0;
+                transition: opacity 0.3s;
+                z-index: -1;
+            }
+            .plan-card:hover:before {
+                opacity: 1;
+            }
+            .best-value-badge {
+                display: block !important;
+                position: absolute;
+                top: 0;
+                right: 0;
+                background: #3B0764;
+                color: #fff;
+                padding: 6px 16px;
+                font-size: 12px;
+                font-weight: 600;
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+                border-radius: 0 16px 0 0;
+                z-index: 1;
+            }
+            .discount-tag {
+                display: inline-flex;
+                align-items: center;
+                background: #ecfdf5;
+                color: #059669;
+                padding: 6px 12px;
+                border-radius: 20px;
+                font-size: 14px;
+                font-weight: 600;
+                margin: 12px 0;
+            }
+            .discount-tag:before {
+                content: "🎉";
+                margin-right: 6px;
+            }
+            .price-block {
+                background: #f8fafc;
+                border-radius: 12px;
+                padding: 16px;
+                margin: 16px 0;
+            }
+            .original-price {
+                color: #94a3b8;
+                text-decoration: line-through;
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+            .discounted-price {
+                color: #1a1a1a;
+                font-size: 32px;
+                font-weight: 700;
+                display: flex;
+                align-items: baseline;
+            }
+            .discounted-price span {
+                font-size: 16px;
+                font-weight: 500;
+                color: #64748b;
+                margin-left: 4px;
+            }
+            .premium-plan-header, .elite-plan-header {
+                margin-bottom: 16px;
+                padding-bottom: 16px;
+                border-bottom: 1px solid #f0f0f0;
+            }
+            .premium-bold, .elite-bold {
+                font-weight: 600;
+                font-size: 18px;
+                color: #1a1a1a;
+                display: block;
+                margin-bottom: 4px;
+            }
+            .premium-normal, .elite-normal {
+                font-weight: 400;
+                font-size: 14px;
+                color: #6b7280;
+            }
+            .premium-subtext, .elite-subtext {
+                font-size: 14px;
+                color:rgb(3, 3, 3);
+                margin-top: 4px;
+                font-weight: 500;
+            }
+            .best-value-badge {
+                position: absolute;
+                top: -1px;
+                right: -1px;
+                background: #3B0764;
+                color: #fff;
+                padding: 8px 16px;
+                font-size: 12px;
+                font-weight: 500;
+                border-radius: 0 16px 0 16px;
+                letter-spacing: 0.5px;
             }
             .best-value-badge span {
-                background: #000;
                 color: #fff;
-                padding: 4px 16px;
-                font-size: 12px;
-                font-family: serif;
-                font-weight: 400;
-                display: block;
             }
-            `;
+
+            @media (max-width: 768px) {
+                .my-stripe-popup-root .popup-content {
+                    padding: 16px;
+                    max-height: 95vh;
+                }
+                .my-stripe-popup-root .plan-cards {
+                    grid-template-columns: 1fr;
+                }
+                .my-stripe-popup-root .plan-card {
+                    padding: 20px;
+                }
+            }
+        `;
         document.head.appendChild(style);
     }
 
@@ -271,83 +434,58 @@ function injectPopupHTML() {
         <div class="plan-card">
             <div>
                 <div class="premium-plan-header">
-                    <div>
-                        <span class="premium-bold">PREMIUM PLAN</span>
-                        <span class="premium-normal">– Most Popular</span>
-                    </div>
+                    <div class="premium-badge">Most Popular</div>
+                    <span class="premium-bold">PREMIUM PLAN</span>
                     <div class="premium-subtext">Cancel anytime</div>
                 </div>
-                <div style="color: #28a745; font-size:18px; font-weight: bold; ">Limited time offer – 50% discount</div>
-                <div style="display: flex; align-items: flex-start; gap: 30px;">
-                    <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
-                        <span style="font-size: 22px; margin-right: 4px;">✕</span>
-                        <span style="text-decoration: line-through;">$99</span>
-                        <span style="font-size: 18px; margin-left: 2px;">/month</span>
-                    </div>
-                    <div>
-                        <div style="color: #222; font-size: 24px; font-weight: 700; display: flex; align-items: center;">
-                            <span style="font-size: 18px; color: #888; margin-right: 4px;">✓</span>
-                            $49<span style="font-size: 18px; font-weight: 400; margin-left: 2px;">/month</span>
-                        </div>
-                        <div style="font-size: 10px; color: #444; margin-top: 0px; margin-left: 0px;">
-                            Discount guaranteed for 12 months
-                        </div>
+                <div class="discount-tag">Limited time offer – 50% discount</div>
+                <div class="price-block">
+                    <div class="original-price">$99/month</div>
+                    <div class="discounted-price">$49<span>/month</span></div>
+                    <div style="font-size: 12px; color: #059669; margin-top: 4px;">
+                        Discount guaranteed for 12 months
                     </div>
                 </div>
                 <ul style="list-style: none; padding-left: 0;">
-                    <li><span style="margin-right: 9px;">✓</span> Monthly growth ideas, tips, tools + checklist</li>
-                    <li><span style="margin-right: 9px;">✓</span> Marketing prompts, templates + outreach scripts</li>
-                    <li><span style="margin-right: 9px;">✓</span> Ongoing business optimization tools</li>
-                    <li><span style="margin-right: 9px;">✓</span> 1:1 support via email with 24-hour response</li>
-                    <li><span style="margin-right: 9px;">✓</span> Early access to new business packs</li>
-                    <li><span style="margin-right: 9px;">✓</span> AI-powered business analysis tools</li>
-                    <li><span style="margin-right: 9px;">✓</span> Training vault: step-by-step guides for common tasks</li>
-                    <li><span style="margin-right: 9px;">✓</span> Bonus: Canva branding kit + social posts</li>
-                    <li><span style="margin-right: 9px;">✓</span> Quarterly content refresh + trend adaptation</li>
-                    <li><span style="margin-right: 9px;">✓</span> AI optimization prompts and training</li>
+                    <li><span>✓</span> Monthly growth ideas, tips, tools + checklist</li>
+                    <li><span>✓</span> Marketing prompts, templates + outreach scripts</li>
+                    <li><span>✓</span> Ongoing business optimization tools</li>
+                    <li><span>✓</span> 1:1 support via email with 24-hour response</li>
+                    <li><span>✓</span> Early access to new business packs</li>
+                    <li><span>✓</span> AI-powered business analysis tools</li>
+                    <li><span>✓</span> Training vault: step-by-step guides</li>
+                    <li><span>✓</span> Bonus: Canva branding kit + social posts</li>
+                    <li><span>✓</span> Quarterly content refresh + trend adaptation</li>
+                    <li><span>✓</span> AI optimization prompts and training</li>
                 </ul>
             </div>
             <button class="plan-btn premium" onclick="proceedToCheckout('price_1RNrEVFRtxUdrNGCfD9u4SYF')">CONTINUE WITH PREMIUM</button>
         </div>
 
-        <div class="plan-card">
+        <div class="plan-card" style="position: relative;">
+            <div class="best-value-badge">Best Value</div>
             <div>
                 <div class="elite-plan-header">
-                    <div>
-                        <span class="elite-bold">ELITE PLAN</span>
-                        <span class="elite-normal">- Complete Solution</span>
-                        <div class="elite-subtext">Cancel anytime</div>
-                    </div>
-                    <div class="best-value-badge">
-                        <span>Best Value</span>
-                    </div>
+                    <div class="elite-badge">Complete Solution</div>
+                    <span class="elite-bold">ELITE PLAN</span>
+                    <div class="elite-subtext">Cancel anytime</div>
                 </div>
-                <div style="color: #28a745; font-size:18px; font-weight: bold; ">Limited time offer – 50% discount</div>
-                <div style="display: flex; align-items: flex-start; gap: 30px;">
-                    <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
-                        <span style="font-size: 22px; margin-right: 4px;">✕</span>
-                        <span style="text-decoration: line-through;">$199</span>
-                        <span style="font-size: 18px; margin-left: 2px;">/month</span>
-                    </div>
-                    <div>
-                        <div style="color: #222; font-size: 24px; font-weight: 700; display: flex; align-items: center;">
-                            <span style="font-size: 18px; color: #888; margin-right: 4px;">✓</span>
-                            $99<span style="font-size: 18px; font-weight: 400; margin-left: 2px;">/month</span>
-                        </div>
-                        <div style="font-size: 10px; color: #444; margin-top: 2px; margin-left: 0px;">
-                            Discount guaranteed for 12 months
-                        </div>
+                <div class="discount-tag">Limited time offer – 50% discount</div>
+                <div class="price-block">
+                    <div class="original-price">$199/month</div>
+                    <div class="discounted-price">$99<span>/month</span></div>
+                    <div style="font-size: 12px; color: #059669; margin-top: 4px;">
+                        Discount guaranteed for 12 months
                     </div>
                 </div>
                 <ul style="list-style: none; padding-left: 0;">
-                    <li><span style="margin-right: 9px;">✓</span> Includes all Premium features - plus</li>
-                    <li><span style="margin-right: 9px;">✓</span> Use us as your personal expert mentor and advisor — 24/7 email support</li>
-                    <li><span style="margin-right: 9px;">✓</span> Done-for-you upgrades, scripts, reviews, redesigns</li>
-                    <li><span style="margin-right: 9px;">✓</span> Online Reputation Management (ORM) monitoring + takedown support</li>
-                    <li><span style="margin-right: 9px;">✓</span> 1-on-1 business strategy check-ins (via email)</li>
-                    <li><span style="margin-right: 9px;">✓</span> Brand protection advice</li>
-                    <li><span style="margin-right: 9px;">✓</span> Issue resolution help as needed</li>
-                    <li><span style="margin-right: 9px;">✓</span> Legal & creative usage templates (terms, portfolio rights, privacy)</li>
+                    <li><span>✓</span> Everything in Premium – plus</li>
+                    <li><span>✓</span> Custom voice-over walkthroughs and screen-recorded setup videos</li>
+                    <li><span>✓</span> Brand Personalization — logo, color palette, banner image, profile assets</li>
+                    <li><span>✓</span> Use us as your personal expert mentor and advisor — 24/7 access</li>
+                    <li><span>✓</span> Full ORM — 24/7 online monitoring, suppression, and takedown support</li>
+                    <li><span>✓</span> Front-of-queue support with fast response times</li>
+                    <li><strong><span>✓</span> BONUS:</strong> 3 exclusive Canva templates</li>
                 </ul>
             </div>
             <button class="plan-btn elite" onclick="proceedToCheckout('price_1RMRqWFRtxUdrNGCUYfXbac8')">CONTINUE WITH ELITE</button>
@@ -393,17 +531,13 @@ function injectPopupHTML() {
             <button class="plan-btn premium" onclick="proceedToCheckout('price_1RNrEVFRtxUdrNGCfD9u4SYF')">CONTINUE WITH PREMIUM</button>
         </div>
 
-        <div class="plan-card">
+        <div class="plan-card" style="position: relative;">
+            <div class="best-value-badge">Best Value</div>
             <div>
                 <div class="elite-plan-header">
-                    <div>
-                        <span class="elite-bold">ELITE PLAN</span>
-                        <span class="elite-normal">- Complete Solution</span>
-                        <div class="elite-subtext">Cancel anytime</div>
-                    </div>
-                    <div class="best-value-badge">
-                        <span>Best Value</span>
-                    </div>
+                    <div class="elite-badge">Complete Solution</div>
+                    <span class="elite-bold">ELITE PLAN</span>
+                    <div class="elite-subtext">Cancel anytime</div>
                 </div>
                 <div style="color: #28a745; font-size:18px; font-weight: bold; ">Limited time offer – 50% discount</div>
                 <div style="display: flex; align-items: flex-start; gap: 30px;">
