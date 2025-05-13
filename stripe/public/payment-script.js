@@ -68,6 +68,13 @@ function injectPopupHTML() {
                 font-size: 20px;
                 font-weight: bold;
             }
+              .my-stripe-popup-root .popup-header img {
+    margin-left: -50PX;
+    width: 150px;
+    height: auto;
+    object-fit: contain;
+    margin-right: -33px;
+}
             .my-stripe-popup-root .close-x {
                 font-size: 20px;
                 cursor: pointer;
@@ -209,7 +216,7 @@ function injectPopupHTML() {
                 color: #666;
             }
             .premium-subtext {
-                font-size: 1em;
+                font-size: 14px;
                 color: #222;
                 margin-top: 2px;
             }
@@ -231,7 +238,7 @@ function injectPopupHTML() {
                   color: #666;
             }
             .elite-subtext {
-                font-size: 1em;
+                font-size: 14px;
                 color: #222;
                 margin-top: 2px;
             }
