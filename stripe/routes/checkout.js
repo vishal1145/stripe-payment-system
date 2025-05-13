@@ -5,6 +5,13 @@ const nodemailer = require('nodemailer');
 
 const Subscription = require('../models/Subscription');
 
+// Price ID to product name mapping
+const priceIdToProduct = {
+    'price_1ROGUeFRtxUdrNGCNjuzaQB5': 'Development kit',
+    'price_1RNrEVFRtxUdrNGCfD9u4SYF': 'Premium Plan',
+    'price_1RMRqWFRtxUdrNGCUYfXbac8': 'Elite Plan'
+};
+
 // Configure nodemailer
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -69,17 +76,17 @@ router.post('/create-checkout-session', async (req, res) => {
                
                 ...metadata
             },
-            custom_fields: [
-                {
-                    key: 'kit_name',
-                    label: {
-                        type: 'custom',
-                        custom: 'Kit Name'
-                    },
-                    type: 'text',
-                    optional: false
-                }
-            ]
+            // custom_fields: [
+            //     {
+            //         key: 'kit_name',
+            //         label: {
+            //             type: 'custom',
+            //             custom: 'Kit Name'
+            //         },
+            //         type: 'text',
+            //         optional: false
+            //     }
+            // ]
         });
 
         console.log('Stripe session created:', session.id);
@@ -127,8 +134,11 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
                 const invoice = await stripe.invoices.retrieve(subscription.latest_invoice);
                 const receiptUrl = invoice.hosted_invoice_url || invoice.invoice_pdf;
 
+                // Get product name from price ID
+                const mainProductName = priceIdToProduct[subscription.items.data[0].price.id] || 'Unknown Product';
+
                 // Get kit name from custom fields
-                const kitName = session.custom_fields.find(field => field.key === 'kit_name')?.text?.value || customer.email;
+                // const kitName = session.custom_fields.find(field => field.key === 'kit_name')?.text?.value || customer.email;
             let supportPlan = 'None';
             if (subscription.items.data.length > 1) {
               // If there is an additional plan, use its priceId
@@ -143,7 +153,7 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
                 const mailOptions = {
                     from: process.env.EMAIL_USER,
                     to: customer.email,
-                    subject: `Payment Confirmation - ${session.metadata.productName}`,
+                    subject: `Payment Confirmation - ${session.metadata.kitName}`,
                     html: `
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f6f8fb; padding: 40px 0;">
   <div style="background: #fff; border-radius: 12px; box-shadow: 0 2px 8px #e0e0e0; padding: 32px 32px 24px 32px; margin: 0 auto;">
@@ -167,8 +177,8 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
     <table style="width: 100%; font-size: 15px; margin-bottom: 16px;">
       <tr>
         <td>
-          <strong>${session.metadata.kitName}</strong><br>
-          <span style="color: #888;">${session.metadata.productDescription || session.metadata.productName}</span>
+         
+          <span style="color: #888;">${mainProductName}-${session.metadata.kitName}</span>
         </td>
         <td style="text-align: right;">$${(subscription.items.data[0].price.unit_amount / 100).toFixed(2)}</td>
       </tr>
@@ -176,7 +186,7 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
       <tr>
         <td>
           <span style="color: #888;">
-  Support Plan<strong style="color: #000;">(${supportPlan})</strong>
+  Support Plan<strong style="color: #000; padding-left:3px;"> (${supportPlan}) </strong>
 </span>
 
         </td>
@@ -190,17 +200,15 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
         <td style="color: #888;">Subtotal</td>
         <td style="text-align: right;">$${(subscription.items.data.reduce((sum, item) => sum + item.price.unit_amount, 0) / 100).toFixed(2)}</td>
       </tr>
-      <tr>
-        <td style="color: #888;">Tax</td>
-        <td style="text-align: right;">$0.00</td>
-      </tr>
+     
       <tr>
         <td style="font-weight: bold;">Total</td>
         <td style="text-align: right; font-weight: bold;">$${(subscription.items.data.reduce((sum, item) => sum + item.price.unit_amount, 0) / 100).toFixed(2)}</td>
       </tr>
     </table>
     <div style="border-top: 1px solid #eee; margin: 24px 0;"></div>
-    <h3 style="color: #34495e; font-size: 18px; margin-bottom: 12px;">Subscription Details</h3>
+        <h3 style="color: #34495e; font-size: 18px; margin-bottom: 12px;">Support Plan - ${supportPlan}</h3>
+     
     <table style="width: 100%; font-size: 15px;">
       <tr>
         <td>Status</td>
@@ -210,14 +218,8 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
         <td>Next Billing Date</td>
         <td style="text-align: right;">${new Date(subscription.current_period_end * 1000).toLocaleDateString()}</td>
       </tr>
-      <tr>
-        <td>Support Plan</td>
-       <td style="text-align: right;">${supportPlan}</td>
-      </tr>
-      <tr>
-        <td>Kit</td>
-        <td style="text-align: right;">${session.metadata.kitName}</td>
-      </tr>
+     
+      
       <tr>
         <td>Billing Frequency</td>
         <td style="text-align: right;">Monthly</td>
@@ -236,14 +238,14 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
       <div style="margin-top: 8px;">Estimated setup time: <strong>Most customers launch within 24-72 hours</strong></div>
     </div>
     <div style="margin-top: 32px; color: #888; font-size: 13px; text-align: center;">
-      <h3>Support</h3>
-      <div>Email: <a href=\"mailto:admin@totalbizpack.com\" style=\"color: #1976d2;\">admin@totalbizpack.com</a></div>
-      <div>Support hours: We respond within 24 hours, Monday-Friday</div>
-      <div>If you purchased a support plan, reply to this email for 1:1 help.</div>
-    </div>
+     <div style="text-align: left;">
+  For any query please contact us here → 
+  <a href="mailto:admin@totalbizpack.com" style="color: #1976d2;">admin@totalbizpack.com</a>
+</div>
+
     <div style="margin-top: 16px; color: #888; font-size: 13px; text-align: center;">
       &copy; ${new Date().getFullYear()} TotalBizPack. All rights reserved.<br>
-      <a href="https://yourdomain.com/privacy" style="color: #888;">Privacy Policy</a> &nbsp;|&nbsp; <a href="https://yourdomain.com/terms" style="color: #888;">Terms</a>
+     
     </div>
   </div>
 </div>
@@ -262,7 +264,7 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
                     customerId: session.client_reference_id || session.customer,
                     stripeCustomerId: session.customer,
                     email: customer.email,
-                    kitName: kitName,
+                    // kitName: kitName,
                     mainSubscription: {
                         stripeSubscriptionId: subscription.id,
                         productId: session.metadata.productId,
