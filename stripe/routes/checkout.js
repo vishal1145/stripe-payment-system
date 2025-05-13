@@ -92,7 +92,12 @@ router.post('/create-checkout-session', async (req, res) => {
 
 // Webhook endpoint
 router.post('/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
-    console.log('Received webhook event');
+  console.log('Received webhook event');
+  const supportPlanNames = {
+    'price_1RNrEVFRtxUdrNGCfD9u4SYF': 'Premium',
+    'price_1RMRqWFRtxUdrNGCUYfXbac8': 'Elite'
+  // Add more priceIds as needed
+  };
     const sig = req.headers['stripe-signature'];
     let event;
 
@@ -124,7 +129,16 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
 
                 // Get kit name from custom fields
                 const kitName = session.custom_fields.find(field => field.key === 'kit_name')?.text?.value || customer.email;
-
+            let supportPlan = 'None';
+            if (subscription.items.data.length > 1) {
+              // If there is an additional plan, use its priceId
+              const additionalPriceId = subscription.items.data[1].price.id;
+              supportPlan = supportPlanNames[additionalPriceId] || 'Custom Plan';
+            } else if (subscription.items.data.length > 0) {
+              // If only one plan, use its priceId
+              const mainPriceId = subscription.items.data[0].price.id;
+              supportPlan = supportPlanNames[mainPriceId] || 'Custom Plan';
+                }
                 // Send confirmation email
                 const mailOptions = {
                     from: process.env.EMAIL_USER,
@@ -134,9 +148,9 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f6f8fb; padding: 40px 0;">
   <div style="background: #fff; border-radius: 12px; box-shadow: 0 2px 8px #e0e0e0; padding: 32px 32px 24px 32px; margin: 0 auto;">
     <div style="text-align: center;">
-      <img src="https://yourcompany.com/logo.png" alt="Company Logo" style="height: 40px; margin-bottom: 16px;">
+      <img src="https://totalbizpack.com/wp-content/uploads/2025/04/cropped-cropped-cropped-logo-briief-cse-70x69.png" alt="TotalBizPack" style="height: 40px; margin-bottom: 16px;">
       <h2 style="color: #27ae60; margin: 0 0 8px 0;">Thank You for Your Purchase!</h2>
-      <p style="color: #888; margin: 0 0 24px 0;">Your order has been confirmed</p>
+      <p style="color: #888; margin: 0 0 24px 0;">Your order for <strong>${session.metadata.kitName}</strong> is confirmed.</p>
     </div>
     <table style="width: 100%; margin-bottom: 24px;">
       <tr>
@@ -153,17 +167,23 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
     <table style="width: 100%; font-size: 15px; margin-bottom: 16px;">
       <tr>
         <td>
-          <strong>${session.metadata.productName}</strong><br>
-          <span style="color: #888;">${kitName}</span>
+          <strong>${session.metadata.kitName}</strong><br>
+          <span style="color: #888;">${session.metadata.productDescription || session.metadata.productName}</span>
         </td>
         <td style="text-align: right;">$${(subscription.items.data[0].price.unit_amount / 100).toFixed(2)}</td>
       </tr>
       ${subscription.items.data.length > 1 ? `
       <tr>
         <td>
-          <span style="color: #888;">Additional Plan</span>
+          <span style="color: #888;">
+  Support Plan<strong style="color: #000;">(${supportPlan})</strong>
+</span>
+
         </td>
-        <td style="text-align: right;">$${(subscription.items.data[1].price.unit_amount / 100).toFixed(2)}/month</td>
+       <td style="text-align: right;">
+  $${(subscription.items.data[1].price.unit_amount / 100).toFixed(2)}/month
+</td>
+
       </tr>
       ` : ''}
       <tr>
@@ -191,8 +211,12 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
         <td style="text-align: right;">${new Date(subscription.current_period_end * 1000).toLocaleDateString()}</td>
       </tr>
       <tr>
-        <td>Plan</td>
-        <td style="text-align: right;">${session.metadata.productName}</td>
+        <td>Support Plan</td>
+       <td style="text-align: right;">${supportPlan}</td>
+      </tr>
+      <tr>
+        <td>Kit</td>
+        <td style="text-align: right;">${session.metadata.kitName}</td>
       </tr>
       <tr>
         <td>Billing Frequency</td>
@@ -201,14 +225,25 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
     </table>
     <div style="text-align: center; margin: 32px 0 0 0;">
       <a href="${receiptUrl}" style="background: #1976d2; color: #fff; padding: 12px 28px; border-radius: 6px; text-decoration: none; font-weight: bold; margin-right: 12px;">Download Kit</a>
-      
+    </div>
+    <div style="margin-top: 32px; color: #888; font-size: 13px; text-align: left;">
+      <h3>Getting Started</h3>
+      <ol style="text-align: left;  display: inline-block;">
+        <li>Step 1: Download your kit using the button above</li>
+        <li>Step 2: Open the main PDF file first for orientation</li>
+        <li>Step 3: Look at the quick-start checklist</li>
+      </ol>
+      <div style="margin-top: 8px;">Estimated setup time: <strong>Most customers launch within 24-72 hours</strong></div>
     </div>
     <div style="margin-top: 32px; color: #888; font-size: 13px; text-align: center;">
-      If you have any questions, please contact our support team at <a href="mailto:support@yourcompany.com" style="color: #1976d2;">support@yourcompany.com</a>.<br>
-      <div style="margin-top: 16px;">
-        &copy; ${new Date().getFullYear()} Your Company. All rights reserved.<br>
-        <a href="https://yourcompany.com/privacy" style="color: #888;">Privacy Policy</a> &nbsp;|&nbsp; <a href="https://yourcompany.com/terms" style="color: #888;">Terms</a>
-      </div>
+      <h3>Support</h3>
+      <div>Email: <a href=\"mailto:admin@totalbizpack.com\" style=\"color: #1976d2;\">admin@totalbizpack.com</a></div>
+      <div>Support hours: We respond within 24 hours, Monday-Friday</div>
+      <div>If you purchased a support plan, reply to this email for 1:1 help.</div>
+    </div>
+    <div style="margin-top: 16px; color: #888; font-size: 13px; text-align: center;">
+      &copy; ${new Date().getFullYear()} TotalBizPack. All rights reserved.<br>
+      <a href="https://yourdomain.com/privacy" style="color: #888;">Privacy Policy</a> &nbsp;|&nbsp; <a href="https://yourdomain.com/terms" style="color: #888;">Terms</a>
     </div>
   </div>
 </div>

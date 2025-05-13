@@ -1,6 +1,6 @@
 // Load API URL from environment variable
-    const API_URL = window.API_URL || 'https://stripe-payment.algofolks.com/api';
-    // const API_URL = window.API_URL || 'http://localhost:3000/api';
+    // const API_URL = window.API_URL || 'https://stripe-payment.algofolks.com/api';
+    const API_URL = window.API_URL || 'http://localhost:3000/api';
     const stripe = Stripe('pk_test_51RAUufFRtxUdrNGCljb5TkX16xKPX6EiJRSHPHENAfBx6AVvaE83LOBKC41ltr1HLECLiKuuTYdWauBuOyBTRsrF009tGlRQ9C');
 
     let selectedPlanId = null;
@@ -195,6 +195,64 @@ function injectPopupHTML() {
                     padding: 12px;
                 }
             }
+            .premium-plan-header {
+                margin-bottom: 10px;
+            }
+            .premium-bold {
+                font-weight: bold;
+                font-size: 1em;
+              color: #666;
+            }
+            .premium-normal {
+                font-weight: normal;
+                font-size: 1em;
+                color: #666;
+            }
+            .premium-subtext {
+                font-size: 1em;
+                color: #222;
+                margin-top: 2px;
+            }
+            .elite-plan-header {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                margin-bottom: 10px;
+                margin-top: 20px;
+            }
+            .elite-bold {
+                font-weight: bold;
+                font-size: 1em;
+                  color: #666;
+            }
+            .elite-normal {
+                font-weight: normal;
+                font-size: 1em;
+                  color: #666;
+            }
+            .elite-subtext {
+                font-size: 1em;
+                color: #222;
+                margin-top: 2px;
+            }
+            .best-value-badge {
+                border: 2px solid #222;
+                padding: 4px 12px 4px 12px;
+                display: flex;
+                align-items: center;
+                height: 30px;
+                min-width: 100px;
+                justify-content: center;
+            }
+            .best-value-badge span {
+                background: #000;
+                color: #fff;
+                padding: 4px 16px;
+                font-size: 1.3em;
+                font-family: serif;
+                font-weight: 500;
+                display: block;
+            }
             `;
         document.head.appendChild(style);
     }
@@ -205,8 +263,14 @@ function injectPopupHTML() {
     const businessPlanContent = `
         <div class="plan-card">
             <div>
-                <div class="plan-card-title">PREMIUM</div>
-                <div style="color: #28a745; font-size:16px; font-weight: bold; margin-left: 139px ;">Limited time offer – 50% discount</div>
+                <div class="premium-plan-header">
+                    <div>
+                        <span class="premium-bold">PREMIUM PLAN</span>
+                        <span class="premium-normal">– Most Popular</span>
+                    </div>
+                    <div class="premium-subtext">Cancel anytime</div>
+                </div>
+                <div style="color: #28a745; font-size:18px; font-weight: bold; ">Limited time offer – 50% discount</div>
                 <div style="display: flex; align-items: flex-start; gap: 30px;">
                     <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
                         <span style="font-size: 22px; margin-right: 4px;">✕</span>
@@ -241,8 +305,17 @@ function injectPopupHTML() {
 
         <div class="plan-card">
             <div>
-                <div class="plan-card-title">ELITE</div>
-                <div style="color: #28a745; font-size:16px; font-weight: bold; margin-left: 149px ;">Limited time offer – 50% discount</div>
+                <div class="elite-plan-header">
+                    <div>
+                        <span class="elite-bold">ELITE PLAN</span>
+                        <span class="elite-normal">- Complete Solution</span>
+                        <div class="elite-subtext">Cancel anytime</div>
+                    </div>
+                    <div class="best-value-badge">
+                        <span>Best Value</span>
+                    </div>
+                </div>
+                <div style="color: #28a745; font-size:18px; font-weight: bold; ">Limited time offer – 50% discount</div>
                 <div style="display: flex; align-items: flex-start; gap: 30px;">
                     <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
                         <span style="font-size: 22px; margin-right: 4px;">✕</span>
@@ -276,8 +349,14 @@ function injectPopupHTML() {
     const regularPlanContent = `
         <div class="plan-card">
             <div>
-                <div class="plan-card-title">PREMIUM</div>
-                <div style="color: #28a745; font-size:16px; font-weight: bold; margin-left: 139px ;">Limited time offer – 50% discount</div>
+                <div class="premium-plan-header">
+                    <div>
+                        <span class="premium-bold">PREMIUM PLAN</span>
+                        <span class="premium-normal">– Most Popular</span>
+                    </div>
+                    <div class="premium-subtext">Cancel anytime</div>
+                </div>
+                <div style="color: #28a745; font-size:18px; font-weight: bold; ">Limited time offer – 50% discount</div>
                 <div style="display: flex; align-items: flex-start; gap: 30px;">
                     <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
                         <span style="font-size: 22px; margin-right: 4px;">✕</span>
@@ -309,8 +388,17 @@ function injectPopupHTML() {
 
         <div class="plan-card">
             <div>
-                <div class="plan-card-title">ELITE</div>
-                <div style="color: #28a745; font-size:16px; font-weight: bold; margin-left: 149px ;">Limited time offer – 50% discount</div>
+                <div class="elite-plan-header">
+                    <div>
+                        <span class="elite-bold">ELITE PLAN</span>
+                        <span class="elite-normal">- Complete Solution</span>
+                        <div class="elite-subtext">Cancel anytime</div>
+                    </div>
+                    <div class="best-value-badge">
+                        <span>Best Value</span>
+                    </div>
+                </div>
+                <div style="color: #28a745; font-size:18px; font-weight: bold; ">Limited time offer – 50% discount</div>
                 <div style="display: flex; align-items: flex-start; gap: 30px;">
                     <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
                         <span style="font-size: 22px; margin-right: 4px;">✕</span>
@@ -345,12 +433,16 @@ function injectPopupHTML() {
             <div class="popup-overlay" id="popupOverlay">
                 <div class="popup-content">
                     <div class="popup-header">
-                        <div class="popup-title">Checkout</div>
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 16px;">
+  <img src="https://totalbizpack.com/wp-content/uploads/2025/04/cropped-cropped-cropped-logo-briief-cse-70x69.png" alt="TotalBizPack" style="height: 40px;">
+  <div style="font-size: 20px; font-weight: bold;">Checkout</div>
+</div>
+
                         <span class="close-x" onclick="closePopup()">&times;</span>
                     </div>
                     <div class="plan-summary" id="selectedPlanSummary">
                         <div id="kitName" style="font-size:13px;color:#666;font-weight:500;"></div>
-                        <div><span id="planPrice" style="font-size:20px;font-weight:700;color:#000;"> </span>  <span style="font-size:20px;font-weight:700; color:#888;"> / one time payment</span></div>
+                        <div><span id="planPrice" style="font-size:20px;font-weight:700;color:#000;"> </span>  <span style="font-size:20px; color:#888;"> / one time payment</span></div>
                     </div>
                     <div>
                         <h3 style="font-size:16px; margin:0;">
@@ -477,27 +569,3 @@ function injectPopupHTML() {
     }
 }
 
-//buy now button click event apply
-
-document.addEventListener('DOMContentLoaded', function() {
-  // 1. Get productId from URL
-  var urls = window.location.href.split("/");
-    var productId = urls[urls.length - 2].replace('-', '');
-
-  // 2. Find the Buy Now button
-  const buttons = document.querySelectorAll('button');
-  let buyNowButton = null;
-  for (const button of buttons) {
-    if (button.textContent.trim().toLowerCase().includes('buy now')) {
-      buyNowButton = button;
-      break;
-    }
-  }
-
-  // 3. Assign click event
-  if (buyNowButton && productId) {
-    buyNowButton.addEventListener('click', function() {
-      openPopup(productId);
-    });
-  }
-});
