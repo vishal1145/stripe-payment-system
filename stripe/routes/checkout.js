@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 
 const Subscription = require('../models/Subscription');
+
+// Configure SendGrid
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // Price ID to product name mapping
 const priceIdToProduct = {
@@ -11,15 +14,6 @@ const priceIdToProduct = {
     'price_1RNrEVFRtxUdrNGCfD9u4SYF': 'Premium Plan',
     'price_1RMRqWFRtxUdrNGCUYfXbac8': 'Elite Plan'
 };
-
-// Configure nodemailer
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD
-    }
-});
 
 // Create checkout session
 router.post('/create-checkout-session', async (req, res) => {
@@ -149,9 +143,9 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
               const mainPriceId = subscription.items.data[0].price.id;
               supportPlan = supportPlanNames[mainPriceId] || 'Custom Plan';
                 }
-                // Send confirmation email
+                // Send confirmation email using SendGrid
                 const mailOptions = {
-                    from: process.env.EMAIL_USER,
+                  from: process.env.SENDGRID_FROM_EMAIL,
                     to: customer.email,
                     subject: `Payment Confirmation - ${session.metadata.kitName}`,
                     html: `
@@ -253,10 +247,10 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
                 };
 
                 try {
-                    await transporter.sendMail(mailOptions);
-                    console.log('Payment confirmation email sent successfully to:', customer.email);
+                    await sgMail.send(mailOptions);
+                    console.log('Payment confirmation email sent successfully via SendGrid to:', customer.email);
                 } catch (emailError) {
-                    console.error('Error sending confirmation email:', emailError);
+                    console.error('Error sending confirmation email via SendGrid:', emailError);
                 }
 
                 // Create subscription record
