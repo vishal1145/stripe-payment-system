@@ -244,7 +244,7 @@ function injectPopupHTML() {
             }
             .best-value-badge {
                 border: 2px solid #222;
-                padding: 4px 12px 4px 12px;
+                padding: 10px 7px 10px 7px;
                 display: flex;
                 align-items: center;
                 height: 30px;
@@ -255,9 +255,9 @@ function injectPopupHTML() {
                 background: #000;
                 color: #fff;
                 padding: 4px 16px;
-                font-size: 1.3em;
+                font-size: 12px;
                 font-family: serif;
-                font-weight: 500;
+                font-weight: 400;
                 display: block;
             }
             `;
