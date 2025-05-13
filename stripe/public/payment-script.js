@@ -218,7 +218,7 @@ function injectPopupHTML() {
                 align-items: flex-start;
                 justify-content: space-between;
                 margin-bottom: 10px;
-                margin-top: 20px;
+                
             }
             .elite-bold {
                 font-weight: bold;
@@ -433,8 +433,8 @@ function injectPopupHTML() {
             <div class="popup-overlay" id="popupOverlay">
                 <div class="popup-content">
                     <div class="popup-header">
-                    <div style="display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 16px;">
-  <img src="https://totalbizpack.com/wp-content/uploads/2025/04/cropped-cropped-cropped-logo-briief-cse-70x69.png" alt="TotalBizPack" style="height: 40px;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 0px; margin-bottom: 16px;">
+  <img src="https://totalbizpack.com/wp-content/uploads/2025/04/cropped-cropped-cropped-logo-briief-cse-70x69.png" alt="TotalBizPack" ">
   <div style="font-size: 20px; font-weight: bold;">Checkout</div>
 </div>
 
