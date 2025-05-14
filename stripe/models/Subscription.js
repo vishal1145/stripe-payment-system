@@ -1,35 +1,17 @@
 const mongoose = require('mongoose');
 
 const subscriptionSchema = new mongoose.Schema({
-    customerId: String,
     stripeCustomerId: String,
-    email: String,
+    customerEmail: String,
+    stripeSubscriptionId: String,
+    status: String,
+    currentPeriodStart: Date,
+    currentPeriodEnd: Date,
+    orderId: mongoose.Schema.Types.ObjectId,
+    planIds: [String],
+    mainProductName: String,
+    supportPlan: String,
     kitName: String,
-    mainSubscription: {
-        stripeSubscriptionId: String,
-        productId: String,
-        planType: String,
-        stripePriceId: String,
-        amount: Number,
-        productName: String,
-        productPrice: String,
-        status: String,
-        currentPeriodStart: Date,
-        currentPeriodEnd: Date,
-        cancelAtPeriodEnd: Boolean
-    },
-    additionalPlan: {
-        stripeSubscriptionItemId: String,
-        planId: String,
-        name: String,
-        stripePriceId: String,
-        amount: Number,
-        status: String,
-        startDate: Date,
-        endDate: Date,
-        createdAt: Date
-    },
-    paymentMethod: String,
     latestInvoice: {
         stripeInvoiceId: String,
         amount: Number,
@@ -37,6 +19,9 @@ const subscriptionSchema = new mongoose.Schema({
         paidAt: Date
     },
     metadata: mongoose.Schema.Types.Mixed
-}, { timestamps: true });
+}, { 
+    timestamps: true,
+    strict: false 
+});
 
 module.exports = mongoose.model('Subscription', subscriptionSchema); 
