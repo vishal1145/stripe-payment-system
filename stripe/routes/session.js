@@ -10,7 +10,7 @@ const getURL = async (body) => {
     if (!fileId || !emailAddress) {
         throw new Error('fileId and emailAddress are required');
     }
-
+console.log("****************body",body)
     try {
         const drive = await getDriveClient();
 
@@ -27,7 +27,8 @@ const getURL = async (body) => {
             message: `✅ Permission granted to ${emailAddress}`, 
             fileId, 
             role, 
-            link: `https://drive.google.com/file/d/${fileId}/view` 
+            link: `https://drive.google.com/drive/folders/${fileId}?usp=drive_link
+` 
         };
     } catch (err) {
         console.error("Permission Error:", err.message);
@@ -59,7 +60,8 @@ router.get('/:sessionId', async (req, res) => {
 
         // Get file URL using order details
         const urlResult = await getURL({
-            fileId: order.productId, // Using productId as fileId
+             fileId: order.folderId, 
+           // fileId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
             emailAddress: order.customerEmail,
             role: 'reader'
         });

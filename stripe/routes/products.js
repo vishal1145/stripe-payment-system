@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
                 productId: 'index1',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'AI Content Creation Service',
+                folderId:'1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'AI Content Creation Service'
@@ -19,6 +20,7 @@ router.get('/', async (req, res) => {
                 productId: 'index2',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Virtual Event Production Service',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'Virtual Event Production Service',
@@ -29,6 +31,7 @@ router.get('/', async (req, res) => {
                 productId: 'index3',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Ghostwritten Tweetstorm Service',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'Ghostwritten Tweetstorm Service',
@@ -39,6 +42,7 @@ router.get('/', async (req, res) => {
                 productId: 'index4',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Lead Gen for Agencies',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'Lead Gen for Agencies',
@@ -49,6 +53,7 @@ router.get('/', async (req, res) => {
                 productId: 'index5',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'LinkedIn Post Ghostwriter',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'LinkedIn Post Ghostwriter',
@@ -59,6 +64,7 @@ router.get('/', async (req, res) => {
                 productId: 'index6',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Email Newsletter Service',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'Email Newsletter Service',
@@ -69,6 +75,7 @@ router.get('/', async (req, res) => {
                 productId: 'index7',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'AI Resume Optimizer',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'AI Resume Optimizer',
@@ -79,6 +86,7 @@ router.get('/', async (req, res) => {
                 productId: 'index8',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'UGC Creator for Brand Deals',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'UGC Creator for Brand Deals',
@@ -89,6 +97,7 @@ router.get('/', async (req, res) => {
                 productId: 'index9',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'AI Resume Writer Service',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'AI Resume Writer Service',
@@ -99,6 +108,7 @@ router.get('/', async (req, res) => {
                 productId: 'index10',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'AI Facebook Group Moderator',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'AI Facebook Group Moderator',
@@ -109,6 +119,7 @@ router.get('/', async (req, res) => {
                 productId: 'index11',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'AI Affiliate Blog Builder',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'AI Affiliate Blog Builder',
@@ -119,6 +130,7 @@ router.get('/', async (req, res) => {
                 productId: 'index12',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'AI YouTube Script Writer',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'AI YouTube Script Writer',
@@ -129,6 +141,7 @@ router.get('/', async (req, res) => {
                 productId: 'index13',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'AI-Generated Printable Products Shop',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'AI-Generated Printable Products Shop',
@@ -139,6 +152,7 @@ router.get('/', async (req, res) => {
                 productId: 'index14',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Local Facebook Ad Service',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'Local Facebook Ad Service',
@@ -149,6 +163,7 @@ router.get('/', async (req, res) => {
                 productId: 'index15',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Google Reviews Consultant',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'Google Reviews Consultant',
@@ -159,6 +174,7 @@ router.get('/', async (req, res) => {
                 productId: 'index16',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Newsletter Sponsorship Broker',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'Newsletter Sponsorship Broker',
@@ -169,6 +185,7 @@ router.get('/', async (req, res) => {
                 productId: 'index17',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Local Services Promoter',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'Local Services Promoter',
@@ -179,6 +196,7 @@ router.get('/', async (req, res) => {
                 productId: 'index18',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Etsy Niche Shop Setup',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'Etsy Niche Shop Setup',
@@ -189,6 +207,7 @@ router.get('/', async (req, res) => {
                 productId: 'index19',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'LinkedIn DM Offer Funnel',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'LinkedIn DM Offer Funnel',
@@ -199,6 +218,7 @@ router.get('/', async (req, res) => {
                 productId: 'index20',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Fiverr Gig Automation',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'Fiverr Gig Automation',
@@ -208,6 +228,7 @@ router.get('/', async (req, res) => {
             'businessindex1': {
                 productId: 'businessindex1',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 name: 'Dentist',
                 price: '$199 ',
                 meta: {
@@ -220,6 +241,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex2',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Lawyer',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'Lawyer',
@@ -231,6 +253,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex3',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Architect',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'Architect',
@@ -242,6 +265,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex4',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Psychologist / Therapist',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'Psychologist / Therapist',
@@ -253,6 +277,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex5',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Financial Advisor',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'Financial Advisor',
@@ -264,6 +289,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex6',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Real Estate Agent',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'Real Estate Agent',
@@ -275,6 +301,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex7',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Accountant/CPA',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'Accountant/CPA',
@@ -286,6 +313,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex8',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Personal Trainer',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'Personal Trainer',
@@ -297,6 +325,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex9',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Nutritionist/Dietitian',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: {
                     kitName: 'Nutritionist/Dietitian',
@@ -307,6 +336,7 @@ router.get('/', async (req, res) => {
             'businessindex10': {
                 productId: 'businessindex10',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 name: 'Beautician',
                 price: '$199 ',
                 meta: {
@@ -318,6 +348,7 @@ router.get('/', async (req, res) => {
             'businessindex11': {
                 productId: 'businessindex11',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 name: 'Hairdresser',
                 price: '$199 ',
                 meta: {
@@ -329,6 +360,7 @@ router.get('/', async (req, res) => {
             'businessindex12': {
                 productId: 'businessindex12',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 name: 'Virtual Assistant',
                 price: '$199 ',
                 meta: {
@@ -340,6 +372,7 @@ router.get('/', async (req, res) => {
             'businessindex13': {
                 productId: 'businessindex13',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 name: 'Bookkeeper',
                 price: '$199 ',
                 meta: {
@@ -351,6 +384,7 @@ router.get('/', async (req, res) => {
             businessindex14: {
                 productId: 'businessindex14',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 name: 'Photographer',
                 price: '$199 ',
                 meta: { kitName: 'Photographer' },
@@ -359,6 +393,7 @@ router.get('/', async (req, res) => {
             businessindex15: {
                 productId: 'businessindex15',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 name: 'Online Coach',
                 price: '$199 ',
                 meta: { kitName: 'Online Coach' },
@@ -367,6 +402,7 @@ router.get('/', async (req, res) => {
             businessindex16: {
                 productId: 'businessindex16',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 name: 'Electrician',
                 price: '$199 ',
                 meta: { kitName: 'Electrician' },
@@ -375,6 +411,7 @@ router.get('/', async (req, res) => {
             businessindex17: {
                 productId: 'businessindex17',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 name: 'Plumber',
                 price: '$199 ',
                 meta: { kitName: 'Plumber' },
@@ -384,6 +421,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex18',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Painter',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: { kitName: 'Painter' },
                 isBusiness: true,
@@ -393,6 +431,7 @@ router.get('/', async (req, res) => {
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Carpenter',
                 price: '$199 ',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 meta: { kitName: 'Carpenter' },
                 isBusiness: true,
             },
@@ -400,6 +439,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex20',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Landscaper',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: { kitName: 'Landscaper' },
                 isBusiness: true,
@@ -407,6 +447,7 @@ router.get('/', async (req, res) => {
             businessindex21: {
                 productId: 'businessindex21',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 name: 'Roofer',
                 price: '$199 ',
                 meta: { kitName: 'Roofer' },
@@ -415,6 +456,7 @@ router.get('/', async (req, res) => {
             businessindex22: {
                 productId: 'businessindex22',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 name: 'Flooring Installer',
                 price: '$199 ',
                 meta: { kitName: 'Flooring Installer' },
@@ -423,6 +465,7 @@ router.get('/', async (req, res) => {
             businessindex23: {
                 productId: 'businessindex23',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 name: 'Cleaning Service',
                 price: '$199 ',
                 meta: { kitName: 'Cleaning Service' },
@@ -433,12 +476,14 @@ router.get('/', async (req, res) => {
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Handyman',
                 price: '$199 ',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 meta: { kitName: 'Handyman' },
                 isBusiness: true,
             },
             businessindex25: {
                 productId: 'businessindex25',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 name: 'Mobile Car Detailer',
                 price: '$199 ',
                 meta: { kitName: 'Mobile Car Detailer' },
@@ -448,6 +493,7 @@ router.get('/', async (req, res) => {
                 productId: 'businessindex26',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
                 name: 'Website Designer',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 price: '$199 ',
                 meta: { kitName: 'Website Designer' },
                 isBusiness: true,
@@ -455,6 +501,7 @@ router.get('/', async (req, res) => {
             businessindex27: {
                 productId: 'businessindex27',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 name: 'E-commerce Seller',
                 price: '$199 ',
                 meta: { kitName: 'E-commerce Seller' },
@@ -463,6 +510,7 @@ router.get('/', async (req, res) => {
             businessindex28: {
                 productId: 'businessindex28',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 name: 'Social Media Manager',
                 price: '$199 ',
                 meta: { kitName: 'Social Media Manager' },
@@ -471,6 +519,7 @@ router.get('/', async (req, res) => {
             businessindex29: {
                 productId: 'businessindex29',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 name: 'Facebook Ads Consultant',
                 price: '$199 ',
                 meta: { kitName: 'Facebook Ads Consultant' },
@@ -479,6 +528,7 @@ router.get('/', async (req, res) => {
             businessindex30: {
                 productId: 'businessindex30',
                 priceId: 'price_1ROFjKFRtxUdrNGC172xd3Xe',
+                folderId: '1N_3cYGhUB4RiR3RjAYX2BU7sHsM6jiuP',
                 name: 'AI Integration Consultant',
                 price: '$199 ',
                 meta: { kitName: 'AI Integration Consultant' },

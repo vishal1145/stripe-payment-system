@@ -32,7 +32,7 @@ const priceIdToProduct = {
 // Create checkout session
 router.post('/create-checkout-session', async (req, res) => {
   try {
-    const { priceId, additionalPlans, productId, productName, productPrice, metadata = {} } = req.body;
+    const { priceId, additionalPlans, productId, folderId, productName, productPrice, metadata = {} } = req.body;
 
     if (!productId) {
       return res.status(400).json({ error: 'productId is required' });
@@ -63,6 +63,7 @@ router.post('/create-checkout-session', async (req, res) => {
     const order = new Order({
       customerEmail: 'pending@example.com',
       productId: productId,
+      folderId: folderId,
       productName: productName,
       productPrice: mainProductAmount.toString(),
       totalAmount: totalAmount,
@@ -138,6 +139,7 @@ router.post('/create-checkout-session', async (req, res) => {
       metadata: {
         orderId: savedOrder._id.toString(),
         productId: productId,
+        folderId: folderId,
         productName: productName,
         productPrice: mainProductAmount.toString(),
         mode: mode,

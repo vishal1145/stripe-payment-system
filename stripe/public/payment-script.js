@@ -679,6 +679,7 @@ function injectPopupHTML() {
         credentials: 'include',
         body: JSON.stringify({
             priceId: selectedProduct.priceId,
+            folderId: selectedProduct.folderId,
         productId: selectedProduct.productId,
         productName: selectedProduct.name,
         productPrice: selectedProduct.price,

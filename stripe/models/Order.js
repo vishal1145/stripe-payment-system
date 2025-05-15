@@ -9,6 +9,10 @@ const orderSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  folderId: {
+    type: String,
+    required: true
+  },
   productName: String,
   productPrice: String,
   totalAmount: Number,

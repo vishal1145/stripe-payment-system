@@ -7,6 +7,8 @@ import sessionRoutes from './routes/session.js';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { handleCallback } from './config/google-drive.js';
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,6 +21,8 @@ console.log('DOMAIN:', process.env.DOMAIN);
 
 const app = express();
 app.use('/api/checkout/webhook', express.raw({ type: 'application/json' }));
+
+
 
 app.use(express.json())
 // Callback route to exchange code for token and store it
@@ -61,6 +65,7 @@ app.use(express.static('public'));
 app.use('/api/checkout', checkoutRoutes);
 app.use('/api/products', productRoutes);
 app.use('/session', sessionRoutes);
+app.use('/oauth2callback', handleCallback);
 
 app.use((err, req, res, next) => {
     console.error('Server Error:', err);
