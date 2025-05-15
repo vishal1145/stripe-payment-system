@@ -1,12 +1,24 @@
-const express = require('express');
+import express from 'express';
+import Stripe from 'stripe';
+import sgMail from '@sendgrid/mail';
+import Subscription from '../models/Subscription.js';
+import Order from '../models/Order.js';
+import Session from '../models/Session.js';
+
 const router = express.Router();
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const sgMail = require('@sendgrid/mail');
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
-const Subscription = require('../models/Subscription');
-const Order = require('../models/Order');
+// Configure SendGrid with error handling
+if (!process.env.SENDGRID_API_KEY) {
+    console.error('SENDGRID_API_KEY is not set in environment variables');
+    process.exit(1);
+}
 
-// Configure SendGrid
+if (!process.env.SENDGRID_FROM_EMAIL) {
+    console.error('SENDGRID_FROM_EMAIL is not set in environment variables');
+    process.exit(1);
+}
+
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // Price ID to product name mapping
@@ -230,13 +242,29 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
 
           // Create subscription record only if it's a subscription mode and subscription exists
           if (session.mode === 'subscription' && subscription) {
+            // Debug logging
+            console.log('Subscription period data:', {
+              created: subscription.created,
+              billing_cycle_anchor: subscription.billing_cycle_anchor
+            });
+
+            // Use created timestamp for start date and add 30 days for end date
+            const startDate = new Date(subscription.created * 1000);
+            const endDate = new Date(startDate.getTime());
+            endDate.setDate(endDate.getDate() + 30); // Add 30 days for monthly subscription
+
+            console.log('Converted dates:', {
+              startDate: startDate.toISOString(),
+              endDate: endDate.toISOString()
+            });
+
             const subscriptionData = {
               stripeCustomerId: session.customer,
               customerEmail: session.customer_details.email,
               stripeSubscriptionId: subscription.id,
               status: subscription.status,
-              currentPeriodEnd: new Date(subscription.current_period_end * 1000),
-              currentPeriodStart: new Date(subscription.current_period_start * 1000),
+              currentPeriodStart: startDate,
+              currentPeriodEnd: endDate,
               orderId: updatedOrder._id,
               planIds: subscription.items.data.map(item => item.price.id),
               mainProductName: subscription.items.data[0].price.product.name,
@@ -244,15 +272,31 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
               kitName: session.metadata.kitName || subscription.items.data[0].price.product.name
             };
 
-            const savedSubscription = await Subscription.create(subscriptionData);
-            console.log('Subscription created:', savedSubscription._id);
+            try {
+              const savedSubscription = await Subscription.create(subscriptionData);
+              console.log('Subscription created:', savedSubscription._id);
+            } catch (subError) {
+              console.error('Error creating subscription:', subError);
+              console.error('Attempted subscription data:', JSON.stringify(subscriptionData, null, 2));
+              // Continue execution even if subscription creation fails
+            }
           } else {
             console.log('Skipping subscription creation - not a subscription payment');
           }
 
-          // Send confirmation email
-          try {
-            const emailHtml = `
+          // Create new session with 7 days expiry
+          const newSession = new Session({
+            ordered: true,
+            expiryDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+            orderId: updatedOrder._id
+          });
+
+          const savedSession = await newSession.save();
+          console.log('New session created:', savedSession._id);
+          
+            // Send confirmation email
+            try {
+              const emailHtml = `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f6f8fb; padding: 40px 0;">
                 <div style="background: #fff; border-radius: 12px; box-shadow: 0 2px 8px #e0e0e0; padding: 32px 32px 24px 32px; margin: 0 auto;">
                     <div style="text-align: center;">
@@ -316,7 +360,7 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
                         </tr>
                         <tr>
                             <td>Next Billing Date</td>
-                            <td style="text-align: right;">${new Date(subscription.current_period_end * 1000).toLocaleDateString()}</td>
+                            <td style="text-align: right;">${new Date(new Date(subscription.created * 1000).getTime() + (30 * 24 * 60 * 60 * 1000)).toLocaleDateString()}</td>
                         </tr>
                         <tr>
                             <td>Billing Frequency</td>
@@ -325,7 +369,7 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
                     </table>
                     ` : ''}
                     <div style="text-align: center; margin: 32px 0 0 0;">
-                        <a href="${session.success_url}" style="background: #1976d2; color: #fff; padding: 12px 28px; border-radius: 6px; text-decoration: none; font-weight: bold; margin-right: 12px;">Download Kit</a>
+                        <a href="${process.env.DOMAIN}/session/${savedSession._id}" style="background: #1976d2; color: #fff; padding: 12px 28px; border-radius: 6px; text-decoration: none; font-weight: bold; margin-right: 12px;">Download Kit</a>
                     </div>
                     <div style="margin-top: 32px; color: #888; font-size: 13px; text-align: left;">
                         <h3>Getting Started</h3>
@@ -417,4 +461,4 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
   }
 });
 
-module.exports = router;
+export default router;

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const subscriptionSchema = new mongoose.Schema({
     stripeCustomerId: String,
@@ -24,4 +24,5 @@ const subscriptionSchema = new mongoose.Schema({
     strict: false 
 });
 
-module.exports = mongoose.model('Subscription', subscriptionSchema); 
+
+export default mongoose.model('Subscription', subscriptionSchema); 

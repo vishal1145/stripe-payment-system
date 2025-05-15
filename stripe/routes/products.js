@@ -1,7 +1,8 @@
-const express = require('express');
+import express from 'express';
+
 const router = express.Router();
 
-// Get product mapping data
+// Get all products
 router.get('/', async (req, res) => {
     try {
         const products = {
@@ -494,4 +495,4 @@ router.get('/', async (req, res) => {
     }
 });
 
-module.exports = router; 
+export default router; 

@@ -1,6 +1,6 @@
 // Load API URL from environment variable
-    const API_URL = window.API_URL || 'https://stripe-payment.algofolks.com/api';
-    // const API_URL = window.API_URL || 'http://localhost:3000/api';
+    // const API_URL = window.API_URL || 'https://stripe-payment.algofolks.com/api';
+    const API_URL = window.API_URL || 'http://localhost:3000/api';
     const stripe = Stripe('pk_test_51RAUufFRtxUdrNGCljb5TkX16xKPX6EiJRSHPHENAfBx6AVvaE83LOBKC41ltr1HLECLiKuuTYdWauBuOyBTRsrF009tGlRQ9C');
 
     let selectedPlanId = null;
