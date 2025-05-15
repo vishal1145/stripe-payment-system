@@ -53,8 +53,15 @@
 
         p {
             color: #718096;
-            margin: 0 0 24px;
+            margin: 0 0 16px;
             line-height: 1.5;
+        }
+
+        #emailMessage {
+            color: #38a169;
+            font-weight: 500;
+            margin-bottom: 16px;
+            
         }
 
         .details {
@@ -111,10 +118,14 @@
         </div>
         <h1>Payment Successful!</h1>
         <p>Thank you for your purchase. Your order has been confirmed.</p>
+
+        <!-- Email Sent Message -->
+        <div id="emailMessage">📧 Confirmation email has been sent successfully.</div>
+
         <div class="details">
             <div>
                 <span class="label">Order ID:</span>
-                <span class="value" id="orderId"></span>
+                <span class="value" id="orderId">Loading...</span>
             </div>
             <div>
                 <span class="label">Status:</span>
@@ -125,14 +136,17 @@
     </div>
 
     <script>
-        // Get order ID from URL parameters
+        // Get orderId 
         const urlParams = new URLSearchParams(window.location.search);
         const orderId = urlParams.get('orderId');
-        
-        // Update the order ID in the page
-        document.getElementById('orderId').textContent = orderId;
        
-        
+
+        // Set Order ID
+        if (orderId) {
+            document.getElementById('orderId').textContent = orderId;
+        }
+
+       
     </script>
 </body>
 
