@@ -433,8 +433,9 @@ function injectPopupHTML() {
     const businessPlanContent = `
         <div class="plan-card">
             <div>
+             <div class="best-value-badge">Most Popula</div>
                 <div class="premium-plan-header">
-                    <div class="premium-badge">Most Popular</div>
+                  
                     <span class="premium-bold">PREMIUM PLAN</span>
                     <div class="premium-subtext">Cancel anytime</div>
                 </div>
@@ -494,6 +495,7 @@ function injectPopupHTML() {
     const regularPlanContent = `
         <div class="plan-card">
             <div>
+            <div class="best-value-badge">Most Popula</div>
                 <div class="premium-plan-header">
                     <div>
                         <span class="premium-bold">PREMIUM PLAN</span>
@@ -574,10 +576,18 @@ function injectPopupHTML() {
             <div class="popup-overlay" id="popupOverlay">
                 <div class="popup-content">
                     <div class="popup-header">
-                    <div style="display: flex; justify-content: center; align-items: center; gap: 0px; margin-bottom: 16px;">
-  <img src="https://totalbizpack.com/wp-content/uploads/2025/04/cropped-cropped-cropped-logo-briief-cse-70x69.png" alt="TotalBizPack" style="height: 40px;">
-  <div style="font-size: 20px; font-weight: bold;">Checkout</div>
+                   <div style="display: flex; align-items: center; margin-bottom: 16px;">
+  <img
+    src="https://totalbizpack.com/wp-content/uploads/2025/04/cropped-cropped-cropped-logo-briief-cse-70x69.png"
+    alt="TotalBizPack"
+    style="height: 40px;     width: 82px;"
+  />
+  <div style="display: flex; flex-direction: column; line-height: 1; margin-right:-3px">
+    <span style="font-size: 16px; color: #06566D; font-weight: 600;">Total</span>
+    <span style="font-size: 18px; color: #06566D; font-weight: 700;">BizPack</span>
+  </div>
 </div>
+
 
                         <span class="close-x" onclick="closePopup()">&times;</span>
                     </div>
