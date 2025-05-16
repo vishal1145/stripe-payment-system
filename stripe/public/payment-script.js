@@ -433,7 +433,7 @@ function injectPopupHTML() {
     const businessPlanContent = `
         <div class="plan-card">
             <div>
-             <div class="best-value-badge">Most Popula</div>
+             <div class="best-value-badge">Most Popular</div>
                 <div class="premium-plan-header">
                   
                     <span class="premium-bold">PREMIUM PLAN</span>
@@ -495,11 +495,11 @@ function injectPopupHTML() {
     const regularPlanContent = `
         <div class="plan-card">
             <div>
-            <div class="best-value-badge">Most Popula</div>
+            <div class="best-value-badge">Most Popular</div>
                 <div class="premium-plan-header">
                     <div>
                         <span class="premium-bold">PREMIUM PLAN</span>
-                        <span class="premium-normal">– Most Popular</span>
+                      
                     </div>
                     <div class="premium-subtext">Cancel anytime</div>
                 </div>

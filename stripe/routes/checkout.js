@@ -301,21 +301,27 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
               const emailHtml = `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f6f8fb; padding: 40px 0;">
                 <div style="background: #fff; border-radius: 12px; box-shadow: 0 2px 8px #e0e0e0; padding: 32px 32px 24px 32px; margin: 0 auto;">
-                   <div style="text-align: center;">
-  <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 16px;">
-    <img
-      src="https://totalbizpack.com/wp-content/uploads/2025/04/cropped-cropped-cropped-logo-briief-cse-70x69.png"
-      alt="TotalBizPack"
-      style="height: 40px;"
-    />
-    <div style="display: flex; flex-direction: column; line-height: 1;">
-      <span style="font-size: 16px; color: #06566D; font-weight: 600;">Total</span>
-      <span style="font-size: 18px; color: #06566D; font-weight: 700;">BizPack</span>
-    </div>
-  </div>
+       <table align="center" cellpadding="0" cellspacing="0" role="presentation" style="margin-bottom: 16px;">
+  <tr>
+    <td style="vertical-align: middle;">
+      <img
+        src="https://totalbizpack.com/wp-content/uploads/2025/04/cropped-cropped-cropped-logo-briief-cse-70x69.png"
+        alt="TotalBizPack"
+        width="40"
+        style="display: block;"
+      />
+    </td>
+    <td style="vertical-align: middle; padding-left: 10px;">
+      <span style="font-size: 16px; color: #06566D; font-weight: 600; font-family: Arial, sans-serif;">Total</span>
+      <span style="font-size: 18px; color: #06566D; font-weight: 700; font-family: Arial, sans-serif;">BizPack</span>
+    </td>
+  </tr>
+</table>
 
-  <h2 style="color: #27ae60; margin: 0 0 8px 0;">Thank You for Your Purchase!</h2>
-</div>
+<p style="text-align: center; color: #27ae60; font-size: 20px; font-weight: bold; font-family: Arial, sans-serif; margin: 0 0 8px 0;">
+  Thank You for Your Purchase!
+</p>
+
 
                     <table style="width: 100%; margin-bottom: 24px;">
                         <tr>
