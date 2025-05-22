@@ -503,21 +503,12 @@ function injectPopupHTML() {
                     </div>
                     <div class="premium-subtext">Cancel anytime</div>
                 </div>
-                <div style="color: #28a745; font-size:18px; font-weight: bold; ">Limited time offer – 50% discount</div>
-                <div style="display: flex; align-items: flex-start; gap: 30px;">
-                    <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
-                        <span style="font-size: 22px; margin-right: 4px;">✕</span>
-                        <span style="text-decoration: line-through;">$99</span>
-                        <span style="font-size: 18px; margin-left: 2px;">/month</span>
-                    </div>
-                    <div>
-                        <div style="color: #222; font-size: 24px; font-weight: 700; display: flex; align-items: center;">
-                            <span style="font-size: 18px; color: #888; margin-right: 4px;">✓</span>
-                            $49<span style="font-size: 18px; font-weight: 400; margin-left: 2px;">/month</span>
-                        </div>
-                        <div style="font-size: 10px; color: #444; margin-top: 0px; margin-left: 0px;">
-                            Discount guaranteed for 12 months
-                        </div>
+               <div class="discount-tag">Limited time offer – 50% discount</div>
+                <div class="price-block">
+                    <div class="original-price">$99/month</div>
+                    <div class="discounted-price">$49<span>/month</span></div>
+                    <div style="font-size: 12px; color: #059669; margin-top: 4px;">
+                        Discount guaranteed for 12 months
                     </div>
                 </div>
                 <ul style="list-style: none; padding-left: 0;">
@@ -541,21 +532,12 @@ function injectPopupHTML() {
                     <span class="elite-bold">ELITE PLAN</span>
                     <div class="elite-subtext">Cancel anytime</div>
                 </div>
-                <div style="color: #28a745; font-size:18px; font-weight: bold; ">Limited time offer – 50% discount</div>
-                <div style="display: flex; align-items: flex-start; gap: 30px;">
-                    <div style="color: #aaa; font-size: 18px; font-weight: 400; display: flex; align-items: center;">
-                        <span style="font-size: 22px; margin-right: 4px;">✕</span>
-                        <span style="text-decoration: line-through;">$199</span>
-                        <span style="font-size: 18px; margin-left: 2px;">/month</span>
-                    </div>
-                    <div>
-                        <div style="color: #222; font-size: 24px; font-weight: 700; display: flex; align-items: center;">
-                            <span style="font-size: 18px; color: #888; margin-right: 4px;">✓</span>
-                            $99<span style="font-size: 18px; font-weight: 400; margin-left: 2px;">/month</span>
-                        </div>
-                        <div style="font-size: 10px; color: #444;  margin-left: 0px;">
-                            Discount guaranteed for 12 months
-                        </div>
+                  <div class="discount-tag">Limited time offer – 50% discount</div>
+                <div class="price-block">
+                    <div class="original-price">$199/month</div>
+                    <div class="discounted-price">$99<span>/month</span></div>
+                    <div style="font-size: 12px; color: #059669; margin-top: 4px;">
+                        Discount guaranteed for 12 months
                     </div>
                 </div>
                 <ul style="list-style: none; padding-left: 0;">
