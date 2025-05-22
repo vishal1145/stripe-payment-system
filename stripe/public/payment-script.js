@@ -723,22 +723,18 @@ function injectPopupHTML() {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Extract the ID from the current page's URL
-    let path = window.location.pathname; // e.g., "/index-1/"
+    let path = window.location.pathname; 
     let idPart = path.split('/').filter(Boolean).pop() || '';
-    idPart = idPart.replace(/-/g, ''); // e.g., "index1"
+    idPart = idPart.replace(/-/g, ''); 
 
-    // Keywords to match in the button text (add more as needed)
     const keywords = ['buy now', 'start now'];
 
     document.querySelectorAll('a.elementor-button').forEach(anchor => {
-        // Get the visible text (including nested spans)
         const buttonText = anchor.textContent.trim().toLowerCase();
-        // Check if any keyword is present in the text
         if (keywords.some(keyword => buttonText.includes(keyword))) {
             anchor.removeAttribute('href');
             anchor.setAttribute('onclick', `openPopup('${idPart}')`);
-            anchor.style.cursor = 'pointer'; // Add pointer cursor
+            anchor.style.cursor = 'pointer'; 
         }
     });
 });
