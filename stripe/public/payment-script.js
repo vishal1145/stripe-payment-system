@@ -723,30 +723,45 @@ function injectPopupHTML() {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Replace anchor tags with Buy Now text
+    // Extract the ID from the current page's URL
+    let path = window.location.pathname; // e.g., "/index-1/"
+    let idPart = path.split('/').filter(Boolean).pop() || '';
+    idPart = idPart.replace(/-/g, ''); // e.g., "index1"
+
+    // Helper: check if idPart is "index1", "index2", etc.
+    function isIndexId(id) {
+        return /^index\d+$/i.test(id);
+    }
+    // Helper: check if idPart is "businessindex1", "businessindex2", etc.
+    function isBusinessIndexId(id) {
+        return /^businessindex\d+$/i.test(id);
+    }
+
     document.querySelectorAll('a.elementor-button').forEach(anchor => {
         const buttonText = anchor.textContent.trim();
         if (buttonText.toLowerCase().includes('buy now')) {
-            const href = anchor.getAttribute('href');
-            // Extract the last non-empty part after splitting by "/"
-            let idPart = href.split('/').filter(Boolean).pop();
-            // Remove dashes if you want (optional)
-            idPart = idPart.replace(/-/g, '');
-
             // Create the button
             const button = document.createElement('button');
+            button.textContent = buttonText;
             button.style.width = '100%';
-            button.style.background = '#1D665E';
             button.style.color = 'white';
             button.style.border = 'none';
             button.style.cursor = 'pointer';
             button.style.fontWeight = '500';
-            button.textContent = buttonText;
-            button.setAttribute('onclick', `openPopup('${idPart}')`);
 
-            // Replace the anchor with the button
+            // Conditional CSS
+            if (isIndexId(idPart)) {
+                button.style.background = '#0070f3'; // blue
+            } else if (isBusinessIndexId(idPart) || /^[a-zA-Z0-9]{16,}$/.test(idPart)) {
+                // businessindex* or Stripe-like ID (long alphanumeric)
+                button.style.background = 'rgb(29, 102, 94)'; // green
+            } else {
+                // Default style if needed
+                button.style.background = '#888';
+            }
+
+            button.setAttribute('onclick', `openPopup('${idPart}')`);
             anchor.parentNode.replaceChild(button, anchor);
         }
     });
 });
-
