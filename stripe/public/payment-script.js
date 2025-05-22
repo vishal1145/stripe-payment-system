@@ -728,11 +728,17 @@ document.addEventListener('DOMContentLoaded', function () {
     let idPart = path.split('/').filter(Boolean).pop() || '';
     idPart = idPart.replace(/-/g, ''); // e.g., "index1"
 
+    // Keywords to match in the button text (add more as needed)
+    const keywords = ['buy now', 'start now'];
+
     document.querySelectorAll('a.elementor-button').forEach(anchor => {
-        const buttonText = anchor.textContent.trim();
-        if (buttonText.toLowerCase().includes('buy now')) {
+        // Get the visible text (including nested spans)
+        const buttonText = anchor.textContent.trim().toLowerCase();
+        // Check if any keyword is present in the text
+        if (keywords.some(keyword => buttonText.includes(keyword))) {
             anchor.removeAttribute('href');
             anchor.setAttribute('onclick', `openPopup('${idPart}')`);
+            anchor.style.cursor = 'pointer'; // Add pointer cursor
         }
     });
 });
