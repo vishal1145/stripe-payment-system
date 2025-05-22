@@ -721,3 +721,32 @@ function injectPopupHTML() {
     }
 }
 
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Replace anchor tags with Buy Now text
+    document.querySelectorAll('a.elementor-button').forEach(anchor => {
+        const buttonText = anchor.textContent.trim();
+        if (buttonText.toLowerCase().includes('buy now')) {
+            const href = anchor.getAttribute('href');
+            // Extract the last non-empty part after splitting by "/"
+            let idPart = href.split('/').filter(Boolean).pop();
+            // Remove dashes if you want (optional)
+            idPart = idPart.replace(/-/g, '');
+
+            // Create the button
+            const button = document.createElement('button');
+            button.style.width = '100%';
+            button.style.background = '#1D665E';
+            button.style.color = 'white';
+            button.style.border = 'none';
+            button.style.cursor = 'pointer';
+            button.style.fontWeight = '500';
+            button.textContent = buttonText;
+            button.setAttribute('onclick', `openPopup('${idPart}')`);
+
+            // Replace the anchor with the button
+            anchor.parentNode.replaceChild(button, anchor);
+        }
+    });
+});
+
