@@ -743,7 +743,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Create the button
             const button = document.createElement('button');
             button.textContent = buttonText;
-            button.style.width = '100%';
+            
             button.style.color = 'white';
             button.style.border = 'none';
             button.style.cursor = 'pointer';
@@ -755,9 +755,11 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (isBusinessIndexId(idPart) || /^[a-zA-Z0-9]{16,}$/.test(idPart)) {
                 // businessindex* or Stripe-like ID (long alphanumeric)
                 button.style.background = 'rgb(29, 102, 94)'; // green
+                button.style.width = '100%';
             } else {
                 // Default style if needed
                 button.style.background = '#888';
+                button.style.width = '17%';
             }
 
             button.setAttribute('onclick', `openPopup('${idPart}')`);
